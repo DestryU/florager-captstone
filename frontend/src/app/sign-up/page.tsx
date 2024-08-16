@@ -9,10 +9,10 @@ export default function () {
                      alt={"four people foraging"}/>
                 <div className={"flex flex-col"}>
 
-                    <h3 className={"text-green-900 md:text-6xl text-3xl font-bold text-center mt-auto pt-20"}>Benefits
+                    <h3 className={"text-green-900 md:text-6xl text-3xl font-black text-center mt-auto pt-32"}>Benefits
                         of
                         a</h3>
-                    <h1 className={"text-green-900 med:text-left md:text-8xl text-5xl font-bold text-center md:mt-auto"}>Free
+                    <h1 className={"text-green-900 med:text-left md:text-8xl text-5xl font-black text-center md:mt-auto"}>Free
                         Profile</h1>
                     <p className={"sm:text-center text-2xl pt-7 pl-8 md:mt-auto"}>
                         New Mexico Floragers website is more fun with a free profile!</p>
@@ -25,7 +25,7 @@ export default function () {
                         <li><em>Share your plant pics on our interactive map</em></li>
                     </ul>
                     <button type="button" className=" self-center h-20 w-80 mt-2 md:mt-auto px-8 py-6 text-2xl font-medium text-white bg-green-900
-                    hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-green-400 rounded-lg text-center
+                    hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-green-400 rounded-lg text-center
                     dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">CREATE PROFILE
                     </button>
                 </div>
