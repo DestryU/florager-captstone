@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
-// import {Navigation} from '/app/components/Navigation'
+//import {Navigation} from '/app/components/Navigation'
 
 
 export const metadata: Metadata = {
