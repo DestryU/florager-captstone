@@ -1,10 +1,9 @@
 // Navigation Menu
 'use client'
 import { Dropdown, Navbar } from "flowbite-react";
+import {SignIn} from "@/app/components/SignIn";
 export function Navigation ()
 {
-    console.log(Navigation)
-
         return (
                 <>
                    <Navbar fluid rounded>
@@ -16,21 +15,22 @@ export function Navigation ()
                             <Navbar.Collapse>
                                 <Navbar.Link href="#" active></Navbar.Link>
                                 <div className={"flex flex-wrap gap-4 text-3xl text-green-700 hover:text-green-400 font-black bg-transparent"}>
-                                    <Navbar.Link href="#identify">Identify
-                                    </Navbar.Link>
-                                         <Dropdown inline label={ <Navbar.Link href="#explore">Explore</Navbar.Link> } arrowIcon={false}>
-                                             <Dropdown inline label={ <Navbar.Link href="#explore-plants">Explore Plants</Navbar.Link> } arrowIcon={false}>
-                                             </Dropdown>
-                                             <Dropdown inline label={ <Navbar.Link href="#explore-map">Explore Map</Navbar.Link> } arrowIcon={false}>
-                                             </Dropdown>
-                                         </Dropdown>
-                                         <Dropdown inline label= { <Navbar.Link href="#share">Share</Navbar.Link> } arrowIcon={false}>
-                                              <Dropdown inline label= { <Navbar.Link href="#sign-up">Sign-up</Navbar.Link> } arrowIcon={false}>
-                                              </Dropdown>
-                                              <Dropdown inline label={ <Navbar.Link href="#sign-in">Sign-in</Navbar.Link> } arrowIcon={false}>
-                                              </Dropdown>
-                                         </Dropdown>
+                                    <Dropdown label="Identify" inline>
+                                        <Dropdown.Item>Identify Plants</Dropdown.Item>
+                                    </Dropdown>
+
+                                    <Dropdown label="Explore" inline>
+                                        <Dropdown.Item>Explore Plants</Dropdown.Item>
+                                        <Dropdown.Item>Explore Map</Dropdown.Item>
+                                    </Dropdown>
+
+                                    <Dropdown label="Share" inline>
+                                        <Dropdown.Item>Sign-up</Dropdown.Item>
+                                    </Dropdown>
+                                    <SignIn/>
+
                                 </div>
+
                             </Navbar.Collapse>
                   </Navbar>
                 </>

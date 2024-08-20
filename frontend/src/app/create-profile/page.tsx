@@ -4,8 +4,8 @@ export default function () {
 
     return (
         <>
-            <div className={"container mt-36 mx-auto"}>
-               <h1 className={"text-green-900 med:text-left md:text-8xl text-5xl font-black text-center md:mt-auto"}>
+            <div className={"container mt-36 mx-auto"} id={"#sign-up"}>
+               <h1 className={"text-green-700 med:text-left md:text-8xl text-5xl font-black text-center md:mt-auto"}>
                    Create Profile</h1>
                     <form className="max-w-sm mx-auto pt-28">
                         <div className="mb-5">
@@ -25,7 +25,7 @@ export default function () {
                                className="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500"
                                placeholder="Example: jane@iloveflowers.org"/>
 
-                        <p id="helper-text-explanation" className="mt-2 text-sm text-green-900 dark:text-green-400 font-bold">We’ll never share your
+                        <p id="helper-text-explanation" className="mt-2 text-sm text-green-700 dark:text-green-400 font-bold">We’ll never share your
                             details.</p>
                     </form>
             </div>
