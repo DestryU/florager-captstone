@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import {Navigation} from "@/app/components/Navigation";
+import {Footer} from "@/app/components/Footer"
 
 
 
@@ -22,6 +23,7 @@ export default function RootLayout(props : RootLayoutProps) {
         <body>
         <Navigation/>
         {children}
+        <Footer/>
         </body>
         </html>
     )
