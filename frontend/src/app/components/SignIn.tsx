@@ -14,7 +14,7 @@ export function SignIn() {
 
     return (
         <>
-            <Button className="bg-green-700" onClick={() => setOpenModal(true)} >Sign In</Button>
+            <Button className="bg-green-700 hover:bg-gray-300 focus:ring-2 focus:ring-green-400" onClick={() => setOpenModal(true)} >Sign In</Button>
             <Modal show={openModal} size="md" onClose={onCloseModal} popup>
                 <Modal.Header />
                 <Modal.Body>
