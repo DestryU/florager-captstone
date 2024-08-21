@@ -1,4 +1,5 @@
 'use client'
+import {Button} from "flowbite-react";
 
 export default function () {
 
@@ -24,8 +25,8 @@ export default function () {
                         <li><em>Comment on identified plants</em></li>
                         <li><em>Share your plant pics on our interactive map</em></li>
                     </ul>
-                    <button type="button" className=" self-center h-20 w-80 mt-2 md:mt-auto px-8 py-6 text-2xl font-medium text-white bg-green-700
-                    hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-green-400 rounded-lg text-center
+                    <button type="button" color="success" className="self-center h-20 w-80 mt-2 md:mt-auto px-8 py-6 text-3xl text-white bg-green-700
+                    hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-400 rounded-lg text-center
                     dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">CREATE PROFILE</button>
                 </div>
             </div>
