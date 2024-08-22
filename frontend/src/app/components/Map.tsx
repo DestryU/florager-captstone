@@ -19,7 +19,7 @@ export function Map () {
                     zoom: 9
                 }}
                 mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-                style={{width: 1920, height: 925}}
+                style={{width: 1920, height: 300}}
                 mapStyle="mapbox://styles/mapbox/dark-v9"
             >
                 {points.map((point, index) => <Pin lat={point.lat} lng={point.lng} index={index} key={index}/>)}
