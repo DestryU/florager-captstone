@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 import './globals.css'
+
 import {Navigation} from "@/app/components/Navigation";
 import {Footer} from "@/app/components/Footer"
 
+
+
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 
 

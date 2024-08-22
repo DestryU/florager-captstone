@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .identify-background{
     background-image: url("../../public/images/flowers-8081925_1280.jpg");
 }
@@ -16,3 +17,4 @@
 .main-carousel{
     height: 75vh
 }
+
