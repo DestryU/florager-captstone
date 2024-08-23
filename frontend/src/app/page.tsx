@@ -17,10 +17,13 @@ export default function Home() {
                     <p className={"text-white lg:text-2xl inline-block align-middle"}>Share NM Plants</p>
                 </button>
                 </div>
-                <div>
-
                 </div>
-            </div>
+                <div className={"flex flex-col md:flex-row items-center justify-center"}>
+                    <h3>A bit about the developers of Florager
+                        <p> 🌿🌼
+                            **In the verdant digital garden of Florager, a remarkable cohort of developers cultivates innovation. Each member, like a specialized root system, brings unique skills and perspectives to nourish this botanical endeavor. The front-end wizards, with their nimble fingers on the keyboard, weave intricate designs—petals of HTML, stems of CSS, and blossoms of JavaScript—into a seamless user experience. Meanwhile, the back-end sorcerers conjure databases and APIs, tending to the roots hidden beneath the soil—the data that fuels Florager's growth. DevOps shamans chant incantations to ensure continuous integration and deployment, while UX alchemists infuse empathy into every pixel. And let's not forget the QA herbalists, meticulously plucking bugs like stubborn weeds. Together, this diverse cohort sows the seeds of knowledge, waters them with collaboration, and watches as Florager flourishes, inviting users to explore the botanical wonders of our digital world.</p>
+                    </h3>
+                </div>
         </>
     )
 }
