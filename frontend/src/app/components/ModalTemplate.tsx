@@ -3,12 +3,16 @@
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 
+
+
 export default function ModalTemplate() {
     const [openModal, setOpenModal] = useState(false);
 
     return (
         <>
-            <Button gradientDuoTone="greenToBlue" onClick={() => setOpenModal(true)} className ="max-w-max">Click</Button>
+            <Button onClick={() => setOpenModal(true)}
+                className="
+                    bg-green-700 hover:bg-green-100 mx-2 pointer-events-auto">Click</Button>
             <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
                 <Modal.Header>Terms of Service</Modal.Header>
                 <Modal.Body>

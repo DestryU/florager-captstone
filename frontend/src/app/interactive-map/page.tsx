@@ -8,7 +8,6 @@ import Hotbar from "@/app/components/Hotbar";
 export default function Home() {
     return (
         <>
-            {/*<Hotbar />*/}
             <Overlay />
             <Map />
         </>
