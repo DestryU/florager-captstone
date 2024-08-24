@@ -1,7 +1,8 @@
+
 'use client'
 import React, { useState } from "react";
 
-export function PlantIdentifier() {
+export function IdentifyUpload() {
     const [file, setFile] = useState(null);
 
     const handleChange = (event: any) => {
@@ -21,5 +22,3 @@ export function PlantIdentifier() {
         </div>
     );
 }
-
-export default PlantIdentifier;
