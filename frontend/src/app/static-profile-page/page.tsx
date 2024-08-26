@@ -1,7 +1,6 @@
 'use client'
 import {ProfilePicButton} from "@/app/components/ProfilePicButton";
 import {UpdateSettings} from "@/app/components/UpdateSettings";
-import IdentifyPage from "@/app/identifier/page";
 import React from "react";
 
 export default function staticProfilePage () {
