@@ -4,7 +4,7 @@ import {MainCarousel} from "@/app/components/MainCarousel";
 export default function Home() {
     return (
         <>
-            <div className={"px-[1rem] pt-[2rem] bg-green-800"}>
+            <div className={"px-[1rem] pt-[2rem] bg-green-900"}>
                 <MainCarousel/>
                 <div className={" md:flex-row items-center px-[.5rem] pb-[2rem] pt-[2rem] bg-green-900"}>
                     <div
