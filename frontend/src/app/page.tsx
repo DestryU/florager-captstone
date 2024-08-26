@@ -44,6 +44,6 @@ export default function Home() {
                 </h4>
             </div>
         </>
-        )
-        }
+    )
+}
 

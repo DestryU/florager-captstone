@@ -34,7 +34,18 @@ export default function () {
             plantRange: 'Specific places',
             plantConservation: "It's doing okay",
             plantImageUrl: 'https://placehold.co/600x400'
+        },
+        {
+            plantId: 'ba562ba1-eb36-4660-82c9-f112256d0e2a',
+            plantCommonName: 'Sunflower',
+            plantScientificName: 'Sunroolio Octoolio',
+            plantInfo: 'Lover of the sun, comes in all heights but typically has a yellow-orange hue on the pedals.',
+            plantUses: 'Edible seeds',
+            plantRange: 'Grows in all regions',
+            plantConservation: "Fine",
+            plantImageUrl: '@/public/sunflower.png',
         }
+
     ]
 
     console.log(plants)

@@ -7,15 +7,15 @@
     background-image: url("../../public/images/Flowers2.jpg");
 }
 
-/*.justify-around{*/
-/*    background-image: url("../../public/images/Cactus1.jpg");*/
-/*}*/
-
-/*.bg-cover{*/
-/*    background-image: url("../../public/images/Fetlowers2.jpg");*/
-/*}*/
 .main-carousel{
     height: 70vh
+
 }
 
+.bg-cover{
+    background-image: url("../../public/images/Flowers2.jpg");
+}
+.main-carousel{
+    height: 75vh
+}
 
