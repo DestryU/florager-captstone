@@ -1,5 +1,5 @@
 import {MainCarousel} from "@/app/components/MainCarousel";
-import Example from "./components/Example";
+
 
 export default function Home() {
     return (
