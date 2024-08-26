@@ -1,5 +1,5 @@
-
 import {MainCarousel} from "@/app/components/MainCarousel";
+
 
 export default function Home() {
     return (
@@ -46,5 +46,4 @@ export default function Home() {
         </>
     )
 }
-
 
