@@ -5,7 +5,7 @@ import { useState } from "react";
 import {UploadPhoto} from "@/app/components/UploadPhoto"
 
 export function ProfilePicButton() {
-    const [openModal, setOpenModal] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
 
     return (
         <>
