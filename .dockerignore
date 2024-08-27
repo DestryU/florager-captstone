@@ -1,0 +1,5 @@
+.git
+*Dockerfile*
+../florager-captstone/docker-compose.yml
+**/node_modules
+README.md
