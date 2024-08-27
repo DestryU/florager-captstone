@@ -11,8 +11,8 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 
 
 export const metadata: Metadata = {
-    title: 'Title Goes Here',
-    description: 'description goes here',
+    title: 'NM Floragers',
+    description: 'A website for discovering the plants of New Mexico',
 }
 
 type RootLayoutProps = {
@@ -22,8 +22,10 @@ type RootLayoutProps = {
 export default function RootLayout(props : RootLayoutProps) {
     const { children } = props
     return (
-        <html  lang="en" suppressHydrationWarning>
-
+        <html lang="en" suppressHydrationWarning>
+        <head>
+            <link rel="icon" type="/favicon.png" href="/favicon.ico"/>
+        </head>
         <body>
         <Navigation/>
         {children}

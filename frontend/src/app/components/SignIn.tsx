@@ -19,28 +19,35 @@ export function SignIn() {
                 <Modal.Header />
                 <Modal.Body>
                     <div className="space-y-6 bg-white">
-                        <h3 className="text-xl font-medium text-green-700 dark:text-white">Sign in to New Mexico Floragers</h3>
+                        <h3 className="text-xl font-medium text-green-700 dark:text-white">Sign in to New Mexico
+                            Floragers</h3>
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="email" value="Email" />
+                                <Label htmlFor="email" value="Email"/>
                             </div>
                             <TextInput className="text-green-700"
-                                id="email"
-                                placeholder="Example: jane@iloveflowers.org"
-                                value={email}
-                                onChange={(event) => setEmail(event.target.value)}
-                                required
+                                       id="email"
+                                       placeholder="Example: jane@iloveflowers.org"
+                                       value={email}
+                                       onChange={(event) => setEmail(event.target.value)}
+                                       required
                             />
                         </div>
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="username" value="Username" />
+                                <Label htmlFor="username" value="Username"/>
                             </div>
-                            <TextInput id="username" type="username"  placeholder="Example: FlowerLoverJane" required />
+                            <TextInput id="username" type="username" placeholder="Example: FlowerLoverJane" required/>
+                        </div>
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="password" value="Password"/>
+                            </div>
+                            <TextInput id="username" type="username" placeholder="secure password" required/>
                         </div>
                         <div className="flex justify-between">
                             <div className="flex items-center gap-2">
-                                <Checkbox id="remember" />
+                                <Checkbox id="remember"/>
                                 <Label htmlFor="remember">Remember me</Label>
                             </div>
                             <a href="#" className="text-sm text-green-700 hover:underline dark:text-green-500">
