@@ -26,8 +26,8 @@ create table if not exists plant
 create table if not exists find
 (
   find_id uuid PRIMARY KEY NOT NULL,
-  find_profile_id uuid FOREIGN KEY references profile(profile_id),
-  find_plant_id uuid FOREIGN KEY references plant(plant_id),
+  find_profile_id uuid references profile(profile_id),
+  find_plant_id uuid references plant(plant_id),
   find_image_url varchar (128),
   find_lat varchar (10),
   find_lng varchar (10),
@@ -36,9 +36,9 @@ create table if not exists find
 
 create table if not exists comment
 (
-    comment_id uuid PRIMARY KEY NOT NULL
-    comment_profile_id FOREIGN KEY references profile(profile_id),
-    comment_find_id FOREIGN KEY references find(find_id),
+    comment_id uuid PRIMARY KEY NOT NULL,
+    comment_profile_id uuid references profile(profile_id),
+    comment_find_id uuid references find(find_id),
     comment_text varchar (512),
     comment_date_time timestamptz NOT NULL
 );
