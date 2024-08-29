@@ -1,7 +1,7 @@
 */src/dist
 */node_modules
 .idea
-*/.Ds_Store
+.DS_Store
 
 project.env
 */.pnp
@@ -14,7 +14,6 @@ project.env
 */build
 
 # misc
-*/.DS_Store
 */.env.local
 */.env.development.local
 */.env.test.local
