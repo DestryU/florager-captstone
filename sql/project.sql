@@ -7,7 +7,7 @@ drop table if exists profile;
 create table if not exists profile
 (
     profile_id uuid PRIMARY KEY NOT NULL,
-    profile_user_name varchar (32),
+    profile_user_name varchar (32) UNIQUE NOT NULL,
     profile_hash char (97) NOT NULL,
     profile_activation_token char (32),
     profile_email varchar (128) UNIQUE NOT NULL,
