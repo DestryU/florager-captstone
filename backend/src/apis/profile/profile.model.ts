@@ -59,11 +59,19 @@ export async function selectPrivateProfileByProfileActivationToken (profileActiv
     return result?.length === 1 ? result [0] : null
 }
 
+export const PublicProfileSchema = PrivateProfileSchema.omit({profileHash: true, profileActivationToken: true, profileEmail: true})
+export type PublicProfile = z.infer<typeof PublicProfileSchema>
+
 export async function updateProfile (profile: PrivateProfile) : Promise<string> {
     const {profileId, profileUserName, profileHash, profileActivationToken, profileEmail, profileImageUrl, profilePronouns } = profile
     await sql`UPDATE profile SET profile_user_name = ${profileUserName}, profile_hash = ${profileHash}, profile_activation_token = ${profileActivationToken}, profile_email = ${profileEmail}, profile_image_url = ${profileImageUrl}, profile_pronouns = ${profilePronouns} WHERE profile_id =${profileId}`
     return 'Profile successfully updated'
 }
 
+export async function selectPrivateProfileByProfileEmail (profileEmail: string) : Promise<PrivateProfile|null> {
+    const rowList = await sql`SELECT profile_id, profile_user_name, profile_hash, profile_activation_token, profile_email, profile_image_url, profile_pronouns FROM profile WHERE profile_email = ${profileEmail}`
+    const result = PrivateProfileSchema.array().max(1).parse(rowList)
+    return result?.length === 1 ? result [0] : null
+}
 
 
