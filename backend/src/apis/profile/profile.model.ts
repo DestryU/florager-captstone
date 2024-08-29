@@ -50,6 +50,20 @@ export async function insertProfile(profile: PrivateProfile): Promise<string> {
     const {profileUserName, profileActivationToken, profileEmail, profileHash, profileImageUrl, profilePronouns} = profile
     await sql`INSERT INTO profile(profile_id, profile_user_name, profile_hash, profile_activation_token, profile_email, profile_image_url, profile_pronouns) 
     VALUES (gen_random_uuid(), ${profileUserName}, ${profileHash}, ${profileActivationToken}, ${profileEmail}, ${profileImageUrl}, ${profilePronouns})`
-    return 'Profile Successfully Created'
+    return 'Profile successfully created'
 }
+
+export async function selectPrivateProfileByProfileActivationToken (profileActivationToken: string) : Promise<PrivateProfile|null> {
+    const rowList = await sql`SELECT profile_id, profile_user_name, profile_hash, profile_activation_token, profile_email, profile_image_url, profile_pronouns FROM profile WHERE profile_activation_token = ${profileActivationToken}`
+    const result = PrivateProfileSchema.array().max(1).parse(rowList)
+    return result?.length === 1 ? result [0] : null
+}
+
+export async function updateProfile (profile: PrivateProfile) : Promise<string> {
+    const {profileId, profileUserName, profileHash, profileActivationToken, profileEmail, profileImageUrl, profilePronouns } = profile
+    await sql`UPDATE profile SET profile_user_name = ${profileUserName}, profile_hash = ${profileHash}, profile_activation_token = ${profileActivationToken}, profile_email = ${profileEmail}, profile_image_url = ${profileImageUrl}, profile_pronouns = ${profilePronouns} WHERE profile_id =${profileId}`
+    return 'Profile successfully updated'
+}
+
+
 

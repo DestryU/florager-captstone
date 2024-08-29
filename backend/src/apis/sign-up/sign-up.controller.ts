@@ -31,13 +31,13 @@ export async function signupProfileController( request: Request, response: Respo
 
      const profileImageUrl = 'http://placekitten.com/300/300'
 
-     const basePath: string = `${request.protocol}://${request.hostname}:8080${request.originalUrl}activation/${profileActivationToken}`
+     const basePath: string = `${request.protocol}://${request.hostname}:8080${request.originalUrl}/activation/${profileActivationToken}`
 
-     const message = `<h2>Welcome to Rethreads.</h2>
-      <p>In order to start posting threads of cats you must confirm your account.</p>
-      <p><a href="${basePath}">${basePath}</a></p>`
+     const message = `<h2>Welcome to New Mexico Floragers.</h2>
+      <p>In order to start identifying local plants and sharing your cats with new friends, please confirm your account.</p>
+      <a href="${basePath}">${basePath}</a>`
 
-     const mailgunMessage = {from: `Mailgun Sandbox <postmaster@${process.env.MAILGUN_DOMAIN as string}>`, to: profileEmail, subject: 'One step closer to Sticky Head -- Account Activation', html: message}
+     const mailgunMessage = {from: `New Mexico Floragers <postmaster@${process.env.MAILGUN_DOMAIN as string}>`, to: profileEmail, subject: 'NM Floragers Account Activation', html: message}
 
      const profile: PrivateProfile = {
       profileId: '',
