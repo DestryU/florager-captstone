@@ -3,7 +3,7 @@ import { postPlantController } from './plant.controller'
 
 // define the base path for the route
 
-const basePath = '/apis'
+const basePath = '/apis/plant'
 
 const router = Router()
 

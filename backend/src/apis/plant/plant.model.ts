@@ -21,8 +21,8 @@ export const PlantSchema = z.object({
     plantImageUrl: z.string({
         required_error: 'Plant image url is required',
         invalid_type_error: 'Please provide a valid plant image url'})
-        .length(32, {message: 'Plant image url is too long'})
-        .nullable(),
+        .max(218, {message: 'Plant image url is too long'})
+        .nullable()
 })
 
 export type Plant = z.infer<typeof PlantSchema>
