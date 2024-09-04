@@ -16,59 +16,59 @@ import { zodErrorResponse } from '../../utils/response.utils'
 
 export async function signupProfileController( request: Request, response: Response ) : Promise<Response | undefined> {
     try {
-     const validationResult = SignupProfileSchema.safeParse(request.body)
-     if (!validationResult.success) {
-     return zodErrorResponse(response, validationResult.error)
-     }
-     const mailgun: Mailgun = new Mailgun(formData)
-        const mailgunClient = mailgun.client({username: 'api',key: process.env.MAILGUN_API_KEY as string})
+         const validationResult = SignupProfileSchema.safeParse(request.body)
+         if (!validationResult.success) {
+         return zodErrorResponse(response, validationResult.error)
+         }
+         const mailgun: Mailgun = new Mailgun(formData)
+            const mailgunClient = mailgun.client({username: 'api',key: process.env.MAILGUN_API_KEY as string})
 
-     const {profileUserName, profileEmail, profilePassword} = request.body
+         const {profileUserName, profileEmail, profilePassword} = request.body
 
-     const profileHash = await setHash(profilePassword)
+         const profileHash = await setHash(profilePassword)
 
-     const profileActivationToken = setActivationToken()
+         const profileActivationToken = setActivationToken()
 
-     const profileImageUrl = 'http://placekitten.com/300/300'
+         const profileImageUrl = 'http://placekitten.com/300/300'
 
-     const basePath: string = `${request.protocol}://${request.hostname}:8080${request.originalUrl}/activation/${profileActivationToken}`
+         const basePath: string = `${request.protocol}://${request.hostname}:8080${request.originalUrl}/activation/${profileActivationToken}`
 
-     const message = `<h2>Welcome to New Mexico Floragers.</h2>
-      <p>In order to start identifying local plants and sharing your cats with new friends, please confirm your account.</p>
-      <a href="${basePath}">${basePath}</a>`
+         const message = `<h2>Welcome to New Mexico Floragers.</h2>
+          <p>In order to start identifying local plants and sharing your cats with new friends, please confirm your account.</p>
+          <a href="${basePath}">${basePath}</a>`
 
-     const mailgunMessage = {from: `New Mexico Floragers <postmaster@${process.env.MAILGUN_DOMAIN as string}>`, to: profileEmail, subject: 'NM Floragers Account Activation', html: message}
+         const mailgunMessage = {from: `New Mexico Floragers <postmaster@${process.env.MAILGUN_DOMAIN as string}>`, to: profileEmail, subject: 'NM Floragers Account Activation', html: message}
 
-     const profile: PrivateProfile = {
-      profileId: '',
-      profileUserName,
-      profileHash,
-      profileActivationToken,
-      profileEmail,
-      profileImageUrl: null,
-      profilePronouns: null
-      }
+         const profile: PrivateProfile = {
+          profileId: '',
+          profileUserName,
+          profileHash,
+          profileActivationToken,
+          profileEmail,
+          profileImageUrl: null,
+          profilePronouns: null
+          }
 
-    await insertProfile(profile)
+        await insertProfile(profile)
 
-    await mailgunClient.messages.create(process.env.MAILGUN_DOMAIN as string, mailgunMessage)
+        await mailgunClient.messages.create(process.env.MAILGUN_DOMAIN as string, mailgunMessage)
 
-    const status: Status = {
-    status: 200,
-    message: 'Profile successfully created please check your email.',
-    data: null
-     }
+        const status: Status = {
+        status: 200,
+        message: 'Profile successfully created please check your email.',
+        data: null
+         }
 
-    return response.json(status)
+        return response.json(status)
 
-    } catch (error: any) {
-    const status: Status = {
-    status: 500,
-    message: error.message,
-    data: null
-    }
+        } catch (error: any) {
+        const status: Status = {
+        status: 500,
+        message: error.message,
+        data: null
+        }
 
-    return response.json(status)
+        return response.json(status)
     }
 }
 

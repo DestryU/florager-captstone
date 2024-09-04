@@ -1,11 +1,12 @@
-import {number, z} from "zod";
+import {z} from "zod";
 import {sql} from '../../utils/database.utils'
 
-export const FindPlantSchema = z.object ({
+export const FindSchema = z.object ({
     findId: z.string({
         required_error: "This requires a findId",
         invalid_type_error: "Oops! This required a valid findId"})
-        .uuid({message: "Please provide a valid uuid for findId"}),
+        .uuid({message: "Please provide a valid uuid for findId"})
+        .nullable(),
 
     findProfileId: z.string({
         required_error: "This requires a findProfileId",
@@ -38,17 +39,17 @@ export const FindPlantSchema = z.object ({
 
     findDateTime: z.date({
         required_error: "This requires a findDateTime",
-        invalid_type_error: "Shucks! This required a valid findDateTime"
-    })
+        invalid_type_error: "Shucks! This required a valid findDateTime"})
+        .nullable()
 })
 
-export type FindPlant = z.infer<typeof FindPlantScehema>
+export type Find = z.infer<typeof FindSchema>
 
-export async function insertFind(find: FindPlant): Promise<string> {
-    const {findProfileId, findPlantId, findImageUrl, findLat, findLng, findDateTime} = find
+export async function insertFind(find: Find): Promise<string> {
+    const {findProfileId, findPlantId, findImageUrl, findLat, findLng} = find
 
     await sql`INSERT INTO find(find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time)
-    VALUES(gen_random_uuid(), ${findProfileId}, ${findPlantId}, ${findImageUrl}, ${findLat}, ${findLng}, ${findDateTime})`
+    VALUES(gen_random_uuid(), ${findProfileId}, ${findPlantId}, ${findImageUrl}, ${findLat}, ${findLng}, now())`
 
     return "Plant was successfully found :)"
 }
