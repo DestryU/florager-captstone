@@ -1,6 +1,5 @@
 import {
     getAllCommentsController,
-    getCommentByProfileUserNameController,
     getCommentByCommentFindIdController,
     getCommentByCommentTextController,
     getCommentByCommentIdController,
@@ -17,8 +16,6 @@ const router = Router()
 router.route('/')
     .post(isLoggedInController, postCommentController)
     .get(getAllCommentsController)
-
-router.route('/profileUserName/:profileUserName').get(getCommentByProfileUserNameController)
 
 router.route('/replies/commentFindId/:commentFindId').get(getCommentByCommentFindIdController)
 

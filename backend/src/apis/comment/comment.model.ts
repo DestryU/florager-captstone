@@ -25,7 +25,7 @@ export async function insertComment(comment: Comment): Promise<string> {
     const {commentId, commentProfileId, commentFindId, commentText, commentDateTime} = comment
 
     await sql`INSERT INTO comment (comment_id, comment_profile_id, comment_find_id, comment_text, comment_date_time)
-              VALUES (gen_random_uuid(), ${commentProfileId}, ${commentFindId}, ${commentText}), now()`
+              VALUES (gen_random_uuid(), ${commentProfileId}, ${commentFindId}, ${commentText}, now())`
 
     return 'Comment successfully posted'
 }
@@ -35,22 +35,9 @@ export async function selectAllComments(): Promise<Comment[]> {
                                       comment_profile_id,
                                       comment_find_id,
                                       comment_text,
-                                      comment_datetime
+                                      comment_date_time
                                FROM comment
-                               ORDER BY comment_datetime DESC`
-
-    return CommentSchema.array().parse(rowList)
-}
-
-export async function selectCommentByProfileUserName(profileUserName: string): Promise<Comment[]> {
-    const rowList = <Comment[]>await sql`SELECT comment_id,
-                                      comment_profile_id,
-                                      comment_find_id,
-                                      comment_text,
-                                      comment_datetime
-                               FROM comment JOIN profile ON comment.comment_profile_id = profile.profile_id
-                               WHERE profile.profile_user_name = ${profileUserName}
-                               AND comment_find_id IS NULL`
+                               ORDER BY comment_date_time DESC`
 
     return CommentSchema.array().parse(rowList)
 }

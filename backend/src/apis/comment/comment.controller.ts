@@ -2,7 +2,6 @@ import {Request, Response} from 'express'
 import {
     CommentSchema,
     selectAllComments,
-    selectCommentByProfileUserName,
     selectCommentByCommentFindId,
     selectCommentByCommentText,
     selectCommentByCommentId,
@@ -132,29 +131,6 @@ export async function getCommentByCommentFindIdController (request: Request, res
         return response.json({
             status: 500,
             message: 'Error getting comments. Try again.',
-            data: []
-        })
-    }
-}
-
-export async function getCommentByProfileUserNameController (request: Request, response: Response): Promise<Response<Status>> {
-    try {
-        const validationResult = PublicProfileSchema.pick({profileUserName: true}).safeParse(request.params.profileName)
-
-        if (!validationResult.success) {
-            return zodErrorResponse(response, validationResult.error)
-        }
-
-        const {profileUserName} = validationResult.data
-
-        const data = await selectCommentByProfileUserName(profileUserName)
-
-        return response.json({status: 200, message: null, data})
-
-    } catch (error) {
-        return response.json({
-            status: 500,
-            message: '',
             data: []
         })
     }
