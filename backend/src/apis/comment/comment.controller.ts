@@ -51,7 +51,6 @@ export async function postCommentController(request: Request, response: Response
 
 export async function getAllCommentsController (request: Request, response: Response): Promise<Response<Status>> {
     try {
-
         const data = await selectAllComments()
 
         const status: Status = {status: 200, message: null, data}
