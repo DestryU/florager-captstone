@@ -16,7 +16,7 @@ export const PlantSchema = z.object({
         required_error: 'Plant common name required',
         invalid_type_error: 'Please provide a valid plant common name'})
         .min(1, {message: 'Please provide a valid plant common name (min 1 character'})
-        .max(128, {message: 'Please provide a valid plant common name (max 128 character'}),
+        .max(128, {message: 'Please provide a valid plant common name (max 128 characters'}),
 
     plantImageUrl: z.string({
         required_error: 'Plant image url is required',
@@ -40,15 +40,19 @@ export async function selectPlantByPlantId (plantId: string) : Promise<Plant|nul
     return result?.length === 1 ? result [0] : null
 }
 
-export async function selectPlantByPlantScientificName (plantScientificName: string) : Promise<Plant|null> {
-    const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_name, plant_image_url WHERE plant_scientific_name = ${plantScientificName}`
+
+export async function selectPlantByPlantCommonName (plantCommonName: string) : Promise<Plant[]> {
+    const formattedPlantCommonName = `%${plantCommonName}%`
+    const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_name, plant_image_url FROM plant WHERE plant_common_name like ${formattedPlantCommonName}`
     const result = PlantSchema.array().max(1).parse(rowList)
-    return result?.length === 1 ? result [0] : null
+    return result
+
 }
 
-export async function selectPlantByPlantCommonName (plantCommonName: string) : Promise<Plant|null> {
-    const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_name, plant_image_url WHERE plant_common_name = ${plantCommonName}`
+export async function selectPlantByPlantScientificName (plantScientificName: string) : Promise<Plant[]> {
+    const formattedPlantScientificName = `%${plantScientificName}%`
+    const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_name, plant_image_url FROM plant WHERE plant_scientific_name like ${formattedPlantScientificName}`
     const result = PlantSchema.array().max(1).parse(rowList)
-    return result?.length === 1 ? result [0] : null
+    return result
 
 }
