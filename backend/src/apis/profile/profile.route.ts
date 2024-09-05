@@ -1,6 +1,6 @@
 import {Router} from "express";
 import {
-    getPublicProfileByIdController, getPublicProfileByProfileIdController, getPublicProfileByProfileUserNameController,
+    getPublicProfileByProfileIdController, putProfileController
 } from "./profile.controller";
 
 const basePath ='/apis/profile'
@@ -10,10 +10,10 @@ router.route('/:profileId')
     .get(getPublicProfileByProfileIdController)
     .put(isLoggedInController, putProfileController)
 
-router.route('/profileNames/:profileName')
-    .get(getPublicProfilesByProfileNameController)
-
-router.route('/profileName/:profileName')
-    .get(getPublicProfileByProfileNameController)
+router.route('/profile/:profile')
+    .get(getPublicProfileByProfileController)
+//
+// router.route('/profileName/:profileName')
+//     .get(getPublicProfileByProfileNameController)
 
 export const profileRoute = {basePath, router}
