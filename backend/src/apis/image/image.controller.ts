@@ -3,7 +3,7 @@ import { uploadToCloudinary } from '../../utils/interfaces/cloudinary.utils'
 
 export async function imageUploadController (request: Request, response: Response): Promise<Response> {
     try {
-        // uncomment if in production
+
         if (request.file === undefined) {
             throw new Error('Please provide a valid file type ')
         }
