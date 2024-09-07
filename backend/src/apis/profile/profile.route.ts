@@ -2,6 +2,7 @@ import {Router} from "express";
 import {
     getPublicProfileByProfileIdController, putProfileController
 } from "./profile.controller";
+import {isLoggedInController} from "../../utils/controllers/isLoggedIn.controller";
 
 const basePath ='/apis/profile'
 const router: Router = Router()
@@ -11,7 +12,7 @@ router.route('/:profileId')
     .put(isLoggedInController, putProfileController)
 
 router.route('/profile/:profile')
-    .get(getPublicProfileByProfileController)
+    .get(getPublicProfileByProfileIdController)
 //
 // router.route('/profileName/:profileName')
 //     .get(getPublicProfileByProfileNameController)

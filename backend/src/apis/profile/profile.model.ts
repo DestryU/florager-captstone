@@ -7,7 +7,7 @@ export const PrivateProfileSchema = z.object({
         invalid_type_error: 'Please provide a valid profileId'})
         .uuid({message: 'please provide a valid profileId'}),
 
-    profileUserName: z.string()
+    profileUserName: z.string({required_error: 'profile user name is required'})
         .trim()
         .min(1, {message: 'please provide a valid username (min 1 character'})
         .max(128, {message: 'please provide a valid username (max 128 character'}),
@@ -37,7 +37,7 @@ export const PrivateProfileSchema = z.object({
         .max(255, {message: 'profile image url is too long'})
         .nullable(),
 
-    profilePronouns: z.string()
+    profilePronouns: z.string({required_error: 'profilePronouns is required'})
         .trim()
         .min(1, {message: 'optional'})
         .max(10, {message: 'optional (max 10 characters)'})
