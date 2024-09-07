@@ -15,7 +15,7 @@ export async function postPlantController( request: Request, response: Response 
         const plant: Plant = {
             plantId: '',
             plantScientificName,
-            plantCommonName,
+            plantCommonName: [],
             plantImageUrl
         }
 

@@ -12,11 +12,12 @@ export const PlantSchema = z.object({
         .min(1, {message: 'Please provide a valid plant scientific name (min 1 character'})
         .max(128, {message: 'Please provide a valid scientific name (max 128 character'}),
 
-    plantCommonName: z.string({
+    plantCommonNames: z.string({
         required_error: 'Plant common name required',
         invalid_type_error: 'Please provide a valid plant common name'})
         .min(1, {message: 'Please provide a valid plant common name (min 1 character'})
-        .max(128, {message: 'Please provide a valid plant common name (max 128 characters'}),
+        .max(128, {message: 'Please provide a valid plant common name (max 128 characters'})
+        .array(),
 
     plantImageUrl: z.string({
         required_error: 'Plant image url is required',
@@ -28,9 +29,9 @@ export const PlantSchema = z.object({
 export type Plant = z.infer<typeof PlantSchema>
 
 export async function insertPlant(plant: Plant): Promise<string> {
-    const {plantScientificName, plantCommonName, plantImageUrl} = plant
+    const {plantScientificName, plantCommonNames, plantImageUrl} = plant
     await sql`INSERT INTO plant(plant_id, plant_scientific_name, plant_common_name, plant_image_url) 
-    VALUES (gen_random_uuid(), ${plantScientificName}, ${plantCommonName}, ${plantImageUrl})`
+    VALUES (gen_random_uuid(), ${plantScientificName}, ${plantCommonNames}, ${plantImageUrl})`
     return 'Plant successfully created'
 }
 

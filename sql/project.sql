@@ -19,7 +19,7 @@ create table if not exists plant
 (
   plant_id uuid PRIMARY KEY NOT NULL,
   plant_scientific_name varchar (128),
-  plant_common_name varchar (256),
+  plant_common_names jsonb,
   plant_image_url varchar (128)
 );
 
@@ -36,9 +36,9 @@ create table if not exists find
 
 create table if not exists comment
 (
-    comment_id uuid PRIMARY KEY NOT NULL,
-    comment_profile_id uuid references profile(profile_id),
-    comment_find_id uuid references find(find_id),
-    comment_text varchar (512),
-    comment_date_time timestamptz NOT NULL
+  comment_id uuid PRIMARY KEY NOT NULL,
+  comment_profile_id uuid references profile(profile_id),
+  comment_find_id uuid references find(find_id),
+  comment_text varchar (512),
+ comment_date_time timestamptz NOT NULL
 );
