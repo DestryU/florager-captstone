@@ -23,7 +23,7 @@ async function dataDownloader() {
        }
        let individualdata = await fetch(createUrl(data[i].gbifId))
            .then(res => res.json())
-       console.log(individualdata.result[i].media)
+       console.log(individualdata.result[0].media)
 
     }
 
