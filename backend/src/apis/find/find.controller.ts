@@ -1,8 +1,9 @@
 import {Request, Response} from "express";
 import {Status} from "../../utils/interfaces/Status";
 import {zodErrorResponse} from "../../utils/response.utils";
-import {Find, FindSchema, insertFind} from './find.model'
+import {Find, FindSchema, insertFind, selectFindByPrimaryKey} from './find.model'
 import {PublicProfile} from "../profile/profile.model";
+import {request} from "node:http";
 
 
 export async function postFindController(request: Request, response: Response): Promise<Response> {
@@ -13,11 +14,8 @@ export async function postFindController(request: Request, response: Response): 
         }
 
         let {findId, findPlantId, findImageUrl, findLat, findLng} = validationResult.data
-
         const profile: PublicProfile = request.session.profile as PublicProfile
         const findProfileId: string = profile.profileId as string
-
-
 
 
         const find: Find = {
@@ -48,3 +46,21 @@ export async function postFindController(request: Request, response: Response): 
         }
         return response.json(status)
     }}
+
+export async function getFindByPrimaryKeyController(request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const validationResult = FindSchema.pick({findId: true}).safeParse(request.params)
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+        const {findId} = validationResult.data
+        const data = await selectFindByPrimaryKey(findId)
+        const status: Status = {status: 200, data, message: null}
+        return response.json(status)
+
+    } catch (error) {
+        return response.json({status: 500, data: null, message: "OH NO!"})
+    }
+
+}

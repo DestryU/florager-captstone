@@ -54,3 +54,37 @@ export async function insertFind(find: Find): Promise<string> {
     return "Plant was successfully found :)"
 }
 
+export async function selectFindByPrimaryKey(find: Find): Promise<Find | null> {
+    const {findId} = find
+    const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time FROM find WHERE find_id = ${findId}`
+    const result = FindSchema.array().max(1).parse(rowList)
+    return result?.length === 1 ? result[0] : null
+}
+
+export async function selectFindByPlantId(find: Find): Promise<Find | null> {
+    const {findPlantId} = find
+    const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time FROM find WHERE find_plant_id = ${findPlantId}`
+    const result = FindSchema.array().max(1).parse(rowList)
+    return result?.length === 1 ? result[0] : null
+}
+
+export async function selectFindByProfileId(find: Find): Promise<Find | null> {
+    const {findProfileId} = find
+    const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time FROM find WHERE find_profile_id = ${findProfileId}`
+    const result = FindSchema.array().max(1).parse(rowList)
+    return result?.length === 1 ? result[0] : null
+}
+
+export async function selectFindByRecent(find: Find): Promise<Find | null> {
+    const {findDateTime} = find
+    const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time FROM find WHERE find_date_time = ${findDateTime}`
+    const result = FindSchema.array().max(1).parse(rowList)
+    return result?.length === 1 ? result[0] : null
+}
+
+export async function selectFindByLocation(find: Find): Promise<Find | null> {
+    const {findId} = find
+    const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time FROM find WHERE find_id = ${findId}`
+    const result = FindSchema.array().max(1).parse(rowList)
+    return result?.length === 1 ? result[0] : null
+}
