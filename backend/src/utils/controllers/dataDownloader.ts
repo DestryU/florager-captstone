@@ -1,4 +1,5 @@
 import {response} from "express";
+import {insertPlant, Plant} from "../../apis/plant/plant.model";
 
 async function dataDownloader() {
 
@@ -13,19 +14,28 @@ async function dataDownloader() {
    }  */
     let data = await fetch(`https://my-api.plantnet.org/v2/projects/k-southwestern-u-s-a/species?lang=en&api-key=${process.env.PLANTNET_API_KEY}`)
      .then(res => res.json())
-   for(let i=0; i<10; i++){
-       let plant = {
-          plant_id: null,
-          plant_scientific_name: '' ,
-          plant_common_names: [],
-          plant_image_url: 'https://ourURL.com',
-          plant_reference_url: `https://www.gbif.org/species/${data[i].gbifId}`
+   for (let plantFromApi of data){
+    // let plantFromApi = data [0]
+    // console.log("Plant From Api: ", plantFromApi)
+    let individualData = await fetch(createUrl(plantFromApi.gbifId))
+        .then(res => res.json())
+    // console.log("plantImage",individualData.results[0].media[0].identifier)
+
+
+       let plant: Plant = {
+          plantId: '',
+          plantScientificName: plantFromApi.scientificNameWithoutAuthor,
+          plantCommonNames: plantFromApi.commonNames,
+          plantImageUrl: individualData.results[0]?.media[0]?.identifier ?? individualData.results[0]?.media[1]?.identifier ,
+          // plantReferenceUrl: `https://www.gbif.org/species/${plantFromApi.gbifId}`
        }
-       let individualdata = await fetch(createUrl(data[i].gbifId))
-           .then(res => res.json())
-       console.log(individualdata.result[0].media)
+
+       plant.plantImageUrl ? await insertPlant(plant) : console.log(individualData.results[0]?.media)
+
+
 
     }
+
 
   }
 function createUrl(gbifId: string) {
