@@ -1,9 +1,16 @@
 import {Request, Response} from "express";
 import {Status} from "../../utils/interfaces/Status";
 import {zodErrorResponse} from "../../utils/response.utils";
-import {Find, FindSchema, insertFind, selectFindByPrimaryKey} from './find.model'
+import {
+    Find,
+    FindSchema,
+    insertFind,
+    selectFindByPlantId,
+    selectFindByPrimaryKey,
+    selectFindByProfileId
+} from './find.model'
 import {PublicProfile} from "../profile/profile.model";
-import {request} from "node:http";
+import {z} from "zod";
 
 
 export async function postFindController(request: Request, response: Response): Promise<Response> {
@@ -49,18 +56,122 @@ export async function postFindController(request: Request, response: Response): 
 
 export async function getFindByPrimaryKeyController(request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const validationResult = FindSchema.pick({findId: true}).safeParse(request.params)
+        const validationResult = z.string({required_error: 'Missing Required',invalid_type_error: 'Invalid Request'})
+            .uuid({message: 'This is not a valid Find ID'})
+            .safeParse(request.params.findId)
+
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
+
         }
 
-        const {findId} = validationResult.data
+        const findId = validationResult.data
         const data = await selectFindByPrimaryKey(findId)
         const status: Status = {status: 200, data, message: null}
         return response.json(status)
 
     } catch (error) {
-        return response.json({status: 500, data: null, message: "OH NO!"})
-    }
+        return response.json({status: 500, data: null, message: ""})
 
+    }
 }
+
+
+//////////////////////////////////////////////////////
+
+
+export async function getFindByPlantIdController(request: Request, response: Response): Promise<Response<Status>> {
+    try {
+
+        const validationResult = z.string().uuid({message:"We got this far"}).safeParse(request.params.findPlantId)
+
+        // const validationResult = FindSchema.safeParse(request.body)
+        console.log("This is where it fucked up")
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+
+
+        const findPlantId = validationResult.data
+        const data = await selectFindByPlantId(findPlantId)
+
+
+        console.log(data)
+
+        const status: Status = {status: 200, data, message: null}
+        return response.json(status)
+
+    } catch (error) {
+        return response.json({status: 500, data: null, message: "The skies are bleeding, the world is falling, everything is wrong!"})
+    }
+}
+
+
+////////////////////////////////////////////
+
+
+
+
+
+
+
+export async function getFindByProfileIdController(request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const validationResult = z.string().uuid({message:"We got this far"}).safeParse(request.params.findPlantId)
+
+
+        const findProfileId = validationResult.data
+        const data = await selectFindByProfileId(findProfileId)
+
+        console.log(data)
+
+
+        return response.json({status: 200, data, message: null})
+
+    } catch (error) {
+        return response.json({status: 500, data: null, message: "Nope, not this time."})
+    }
+}
+
+
+
+
+
+
+
+
+
+
+// export async function getFindByPlantIdController(request: Request, response: Response): Promise<Response<Status>> {
+//     try {
+//         const validationResult = FindSchema.pick({findPlantId: true}).safeParse(request.params.findPlantId)
+//         if (!validationResult.success) {
+//             return zodErrorResponse(response, validationResult.error)
+//         }
+//
+//         const {findPlantId} = validationResult.data
+//         const data = await selectFindByPlantId(findPlantId)
+//         const status: Status = {status: 200, data, message: null}
+//         return response.json(status)
+//
+//     } catch (error) {
+//         return response.json({status: 500, data: null, message: "OH NO!"})
+//     }
+// }
+
+
+// export async function getFindByProfileIdController(request: Request, response:Response): Promise<Response<Status>> {
+//     try {
+//         const validationResult =
+//
+//         if (!validationResult.success) {
+//             return zodErrorResponse(response, validationResult.error)
+//         }
+//
+//
+//
+//     } catch (error) {
+//         return response.json({status: 500, data: null, message: "OH NO!"})
+//     }
+// }
