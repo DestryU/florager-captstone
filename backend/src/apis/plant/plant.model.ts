@@ -12,7 +12,7 @@ export const PlantSchema = z.object({
         .min(1, {message: 'Please provide a valid plant scientific name (min 1 character'})
         .max(128, {message: 'Please provide a valid scientific name (max 128 character'}),
 
-    plantCommonName: z.string({
+    plantCommonName: z.string ({
         required_error: 'Plant common name required',
         invalid_type_error: 'Please provide a valid plant common name'})
         .min(1, {message: 'Please provide a valid plant common name (min 1 character'})
