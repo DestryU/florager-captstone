@@ -86,8 +86,8 @@ export async function selectFindByRecent(): Promise<Find[] | null> {
     const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time
     FROM find
     ORDER BY find_date_time
-    LIMIT 10`
+    LIMIT 25`
 
-    return FindSchema.array().max(10).parse(rowList)
+    return FindSchema.array().max(25).parse(rowList)
 
 }
