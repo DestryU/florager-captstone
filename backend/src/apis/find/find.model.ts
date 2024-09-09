@@ -56,7 +56,6 @@ export async function insertFind(find: Find): Promise<string> {
     return "Plant was successfully found :)"
 }
 
-
 export async function selectFindByPrimaryKey(findId: string): Promise<Find | null> {
 
     const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time
@@ -67,21 +66,6 @@ export async function selectFindByPrimaryKey(findId: string): Promise<Find | nul
     return result?.length === 1 ? result[0] : null
 }
 
-
-// For the arguments, I see a lot of different situations where the expectation is a specific type, such as a string, and a lot of situations where the entire schema argument is taken in then deconstructed within the function. Why? Is it style, or is there a reason why specificity matters?
-
-
-
-
-
-
-
-///////////////////////////////////////
-
-
-
-
-
 export async function selectFindByPlantId(findPlantId: string): Promise<Find[] | null> {
     const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time
     FROM find
@@ -89,11 +73,6 @@ export async function selectFindByPlantId(findPlantId: string): Promise<Find[] |
 
     return FindSchema.array().parse(rowList)
 }
-
-
-///////////////////////////////////////
-
-
 
 export async function selectFindByProfileId(findProfileId: string): Promise<Find[] | null> {
     const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time
@@ -103,28 +82,12 @@ export async function selectFindByProfileId(findProfileId: string): Promise<Find
     return FindSchema.array().parse(rowList)
 }
 
+export async function selectFindByRecent(): Promise<Find[] | null> {
+    const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time
+    FROM find
+    ORDER BY find_date_time
+    LIMIT 10`
 
+    return FindSchema.array().max(10).parse(rowList)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export async function selectFindByRecent(find: Find): Promise<Find | null> {
-    const {findDateTime} = find
-    const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time FROM find WHERE find_date_time = ${findDateTime}`
-    const result = FindSchema.array().max(1).parse(rowList)
-    return result?.length === 1 ? result[0] : null
 }
