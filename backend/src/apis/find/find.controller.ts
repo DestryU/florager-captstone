@@ -122,8 +122,9 @@ export async function getFindByProfileIdController(request: Request, response: R
 
 export async function getFindByRecentController(request: Request, response:Response): Promise<Response<Status>> {
     try {
-        const data = await selectFindByRecent()
+        
 
+        const data = await selectFindByRecent()
         return response.json({status:200, data, message: null})
 
     } catch (error) {
