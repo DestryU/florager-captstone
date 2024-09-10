@@ -43,7 +43,9 @@ export const FindSchema = z.object ({
         .nullable()
 })
 
+
 export type Find = z.infer<typeof FindSchema>
+
 
 export async function insertFind(find: Find): Promise<string> {
     const {findProfileId, findPlantId, findImageUrl, findLat, findLng} = find
@@ -54,3 +56,38 @@ export async function insertFind(find: Find): Promise<string> {
     return "Plant was successfully found :)"
 }
 
+export async function selectFindByPrimaryKey(findId: string): Promise<Find | null> {
+
+    const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time
+    FROM find
+    WHERE find_id = ${findId}`
+
+    const result = FindSchema.array().max(1).parse(rowList)
+    return result?.length === 1 ? result[0] : null
+}
+
+export async function selectFindByPlantId(findPlantId: string): Promise<Find[] | null> {
+    const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time
+    FROM find
+    WHERE find_plant_id = ${findPlantId}`
+
+    return FindSchema.array().parse(rowList)
+}
+
+export async function selectFindByProfileId(findProfileId: string): Promise<Find[] | null> {
+    const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time
+    FROM find
+    WHERE find_profile_id = ${findProfileId}`
+
+    return FindSchema.array().parse(rowList)
+}
+
+export async function selectFindByRecent(): Promise<Find[] | null> {
+    const rowList = await sql`SELECT find_id, find_profile_id, find_plant_id, find_image_url, find_lat, find_lng, find_date_time
+    FROM find
+    ORDER BY find_date_time
+    LIMIT 25`
+
+    return FindSchema.array().max(25).parse(rowList)
+
+}
