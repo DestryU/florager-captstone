@@ -44,7 +44,7 @@ export async function selectCommentByCommentFindId(commentFindId: string): Promi
                                       comment_profile_id,
                                       comment_find_id,
                                       comment_text,
-                                      comment_datetime
+                                      comment_date_time
                                FROM comment
                                WHERE comment_find_id = ${commentFindId}`
     return CommentSchema.array().parse(rowList)
@@ -55,7 +55,7 @@ export async function selectCommentByCommentText(commentText: string): Promise<C
                                       comment_profile_id,
                                       comment_find_id,
                                       comment_text,
-                                      comment_datetime
+                                      comment_date_time
                                     FROM comment
                                     WHERE comment_id = ${commentText}`
 

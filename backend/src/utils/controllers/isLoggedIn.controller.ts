@@ -31,8 +31,3 @@ export function isLoggedInController(request: Request, response: Response, next:
     }
 
 }
-
-<<<<<<< HEAD
-
-=======
->>>>>>> find-rest-api

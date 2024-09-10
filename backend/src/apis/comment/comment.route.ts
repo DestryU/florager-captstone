@@ -17,7 +17,7 @@ router.route('/')
     .post(isLoggedInController, postCommentController)
     .get(getAllCommentsController)
 
-router.route('/replies/commentFindId/:commentFindId').get(getCommentByCommentFindIdController)
+router.route('/commentFindId/:commentFindId').get(getCommentByCommentFindIdController)
 
 router.route('/replies/commentText/:commentText').get(getCommentByCommentTextController)
 
