@@ -52,6 +52,7 @@ export class App {
     this.app.use(signupRoute.basePath, signupRoute.router)
     this.app.use(signInRoute.basePath, signInRoute.router)
     this.app.use(commentRoute.basePath, commentRoute.router)
+    this.app.use(profileRoute.basePath, profileRoute.router )
     this.app.use(plantRoute.basePath, plantRoute.router)
     this.app.use(findRoute.basePath, findRoute.router)
     this.app.use(imageRoute.basePath, imageRoute.router)

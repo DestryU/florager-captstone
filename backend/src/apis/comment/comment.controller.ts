@@ -1,6 +1,5 @@
 import {Request, Response} from 'express'
 import {
-    CommentSchema,
     selectAllComments,
     selectCommentByCommentFindId,
     selectCommentByCommentText,
@@ -13,6 +12,7 @@ import {Status} from "../../utils/interfaces/Status";
 import {PublicProfile, PublicProfileSchema} from "../profile/profile.model";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {z} from "zod";
+import {CommentSchema} from "./comment.validator";
 
 
 export async function postCommentController(request: Request, response: Response): Promise<Response | undefined> {
@@ -23,7 +23,7 @@ export async function postCommentController(request: Request, response: Response
             return zodErrorResponse(response, validationResult.error)
         }
 
-        const {commentText, } = validationResult.data
+        const {commentText, commentFindId} = validationResult.data
 
         const profile: PublicProfile = request.session.profile as PublicProfile
 
@@ -32,7 +32,7 @@ export async function postCommentController(request: Request, response: Response
         const comment: Comment = {
             commentId: null,
             commentProfileId,
-            commentFindId: null,
+            commentFindId,
             commentText,
             commentDateTime: null
         }

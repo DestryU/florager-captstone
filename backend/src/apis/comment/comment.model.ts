@@ -1,23 +1,7 @@
 import {z} from 'zod'
 import {sql} from "../../utils/database.utils";
+import {CommentSchema} from "./comment.validator";
 
-export const CommentSchema = z.object({
-
-    commentId: z.string(
-        {required_error: 'Please provide a valid commentId or null', invalid_type_error:"CommentId must be a uuid or null"}).uuid({message: 'Please provide a valid uuid for commentId'}).nullable(),
-
-    commentProfileId: z.string(
-        {required_error: 'Please provide a valid commentProfileId', invalid_type_error: 'commentProfileId must be a uuid'}).uuid({message: 'Please provide a valid uuid for commentProfileId'}),
-
-    commentFindId: z.string(
-        {required_error: 'Please provide a valid commentFindId or null', invalid_type_error: "commentFindId must be a uuid"}).uuid({message: 'Please provide a valid uuid for commentFindId'}).nullable(),
-
-    commentText: z.string(
-        {required_error: "commentText is a required field"}).max(255, {message: 'Please provide a valid commentText'}),
-
-    commentDateTime: z.coerce.date(
-        {required_error: 'Please provide a valid commentDatetime or null', invalid_type_error: "Comment date time is not a valid date"}).nullable(),
-})
 
 export type Comment = z.infer<typeof CommentSchema>
 
@@ -60,7 +44,7 @@ export async function selectCommentByCommentFindId(commentFindId: string): Promi
                                       comment_profile_id,
                                       comment_find_id,
                                       comment_text,
-                                      comment_datetime
+                                      comment_date_time
                                FROM comment
                                WHERE comment_find_id = ${commentFindId}`
     return CommentSchema.array().parse(rowList)
@@ -71,7 +55,7 @@ export async function selectCommentByCommentText(commentText: string): Promise<C
                                       comment_profile_id,
                                       comment_find_id,
                                       comment_text,
-                                      comment_datetime
+                                      comment_date_time
                                     FROM comment
                                     WHERE comment_id = ${commentText}`
 
