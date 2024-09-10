@@ -10,12 +10,12 @@ export async function postPlantController( request: Request, response: Response 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
         }
-        const {plantScientificName, plantCommonName, plantImageUrl} = validationResult.data
+        const {plantScientificName, plantCommonNames, plantImageUrl} = validationResult.data
 
         const plant: Plant = {
             plantId: '',
             plantScientificName,
-            plantCommonName: [],
+            plantCommonNames: [],
             plantImageUrl
         }
 
