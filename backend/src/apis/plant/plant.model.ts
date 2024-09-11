@@ -12,30 +12,37 @@ export const PlantSchema = z.object({
         .min(1, {message: 'Please provide a valid plant scientific name (min 1 character'})
         .max(128, {message: 'Please provide a valid scientific name (max 128 character'}),
 
-    plantCommonName: z.string ({
+    plantCommonNames: z.string({
+
         required_error: 'Plant common name required',
         invalid_type_error: 'Please provide a valid plant common name'})
         .min(1, {message: 'Please provide a valid plant common name (min 1 character'})
-        .max(128, {message: 'Please provide a valid plant common name (max 128 characters'}),
+        .max(128, {message: 'Please provide a valid plant common name (max 128 characters'})
+        .array(),
 
     plantImageUrl: z.string({
         required_error: 'Plant image url is required',
         invalid_type_error: 'Please provide a valid plant image url'})
         .max(218, {message: 'Plant image url is too long'})
-        .nullable()
+        .nullable(),
+    plantReferenceUrl: z.string({
+        required_error: 'Plant reference url is required',
+        invalid_type_error: 'Please provide a valid plant reference url'})
+        .max(218, {message: 'Plant reference url is too long'})
+
 })
 
 export type Plant = z.infer<typeof PlantSchema>
 
 export async function insertPlant(plant: Plant): Promise<string> {
-    const {plantScientificName, plantCommonName, plantImageUrl} = plant
-    await sql`INSERT INTO plant(plant_id, plant_scientific_name, plant_common_name, plant_image_url) 
-    VALUES (gen_random_uuid(), ${plantScientificName}, ${plantCommonName}, ${plantImageUrl})`
+    const {plantScientificName, plantCommonNames, plantImageUrl,plantReferenceUrl   } = plant
+    await sql`INSERT INTO plant(plant_id, plant_scientific_name, plant_common_names, plant_image_url, plant_reference_url) 
+    VALUES (gen_random_uuid(), ${plantScientificName}, ${plantCommonNames}, ${plantImageUrl}, ${plantReferenceUrl})`
     return 'Plant successfully created'
 }
 
 export async function selectPlantByPlantId (plantId: string) : Promise<Plant|null> {
-    const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_name, plant_image_url FROM plant WHERE plant_id = ${plantId}`
+    const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_names, plant_image_url, plant_reference_url FROM plant WHERE plant_id = ${plantId}`
     const result = PlantSchema.array().max(1).parse(rowList)
     return result?.length === 1 ? result [0] : null
 }
@@ -43,7 +50,7 @@ export async function selectPlantByPlantId (plantId: string) : Promise<Plant|nul
 
 export async function selectPlantByPlantCommonName (plantCommonName: string) : Promise<Plant[]> {
     const formattedPlantCommonName = `%${plantCommonName}%`
-    const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_name, plant_image_url FROM plant WHERE plant_common_name like ${formattedPlantCommonName}`
+    const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_names, plant_image_url, plant_reference_url FROM plant WHERE plant_common_names like ${formattedPlantCommonName}`
     const result = PlantSchema.array().max(1).parse(rowList)
     return result
 
@@ -51,8 +58,12 @@ export async function selectPlantByPlantCommonName (plantCommonName: string) : P
 
 export async function selectPlantByPlantScientificName (plantScientificName: string) : Promise<Plant[]> {
     const formattedPlantScientificName = `%${plantScientificName}%`
-    const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_name, plant_image_url FROM plant WHERE plant_scientific_name like ${formattedPlantScientificName}`
+    const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_names, plant_image_url, plant_reference_url FROM plant WHERE plant_scientific_name like ${formattedPlantScientificName}`
     const result = PlantSchema.array().max(1).parse(rowList)
     return result
 
+}
+export async function selectAllPlant(): Promise<Plant[]> {
+    const rowList = <Plant[]>await sql`SELECT plant_id, plant_scientific_name, plant_common_names, plant_image_url, plant_reference_url FROM plant`
+    return PlantSchema.array().parse(rowList)
 }
