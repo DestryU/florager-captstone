@@ -98,8 +98,9 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
 
     return (
         <>
+            <h1 className= "md:text-8xl sm:text-5xl text-green-700 font-black text-center mt-20" >Create Profile</h1>
             <form onSubmit={handleSubmit} className="flex min-h-auto gap-4 min-w-full flex-col grow">
-              <div className="m-40 p-16">
+              <div className="mx-auto mt-16">
                     <div className="mb-2 block">
                         <Label htmlFor="email1" value="Email"/>
                     </div>
@@ -164,7 +165,6 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
                 <DisplayStatus status={status}/>
              </div>
             </form>
-            <FormDebugger {...props} />
         </>
 
     )
