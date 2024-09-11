@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
 import { useState } from "react";
