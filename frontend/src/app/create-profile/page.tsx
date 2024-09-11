@@ -32,7 +32,7 @@ const SignUpSchema = z.object( {
     })
 
 type SignUp = z.infer< typeof SignUpSchema>
-export function SignUpForm() {
+export default function SignUpForm() {
 
     const initialValues = {
         profileUserName: '',
