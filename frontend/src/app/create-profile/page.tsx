@@ -56,11 +56,12 @@ export default function SignUpForm() {
         })
             .then(response => response.json())
             .then(data => {
-                const type = 'failure'
-                setStatus({type, message: data.message})
+                let type = 'failure'
                 if (data.staus === 200) {
                     resetForm()
+                  type = 'success'
                 }
+                setStatus({type, message: data.message})
 
             })
             .catch(error => {
@@ -99,7 +100,7 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
         <>
             <form onSubmit={handleSubmit} className="flex min-h-auto gap-4 min-w-full flex-col grow">
                 <div>
-                    <div className="mb-2 block">
+                    <div className="block m-10">
                         <Label htmlFor="email1" value="email"/>
                     </div>
                     <TextInput
@@ -114,7 +115,7 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
                     <DisplayError errors={errors} touched={touched} field={'profileEmail'}/>
                 </div>
                 <div>
-                    <div className="mb-2 block">
+                    <div className="m-10 block">
                         <Label htmlFor="profileUserName" value="name"/>
                     </div>
                     <TextInput
@@ -129,7 +130,7 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
                     <DisplayError errors={errors} touched={touched} field={'profileUserName'}/>
                 </div>
                 <div>
-                    <div className="mb-2 block">
+                    <div className="m-10 block">
                         <Label htmlFor="profilePassword" value="password"/>
                     </div>
                     <TextInput
