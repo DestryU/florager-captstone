@@ -99,9 +99,9 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
     return (
         <>
             <form onSubmit={handleSubmit} className="flex min-h-auto gap-4 min-w-full flex-col grow">
-                <div>
-                    <div className="block m-10">
-                        <Label htmlFor="email1" value="email"/>
+              <div className="m-40 p-16">
+                    <div className="mb-2 block">
+                        <Label htmlFor="email1" value="Email"/>
                     </div>
                     <TextInput
                         onChange={handleChange}
@@ -113,10 +113,10 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
                         value={values.profileEmail}
                     />
                     <DisplayError errors={errors} touched={touched} field={'profileEmail'}/>
-                </div>
+
                 <div>
-                    <div className="m-10 block">
-                        <Label htmlFor="profileUserName" value="name"/>
+                    <div className="mb-2 block">
+                        <Label htmlFor="profileUserName" value="Create Username"/>
                     </div>
                     <TextInput
                         onChange={handleChange}
@@ -130,8 +130,8 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
                     <DisplayError errors={errors} touched={touched} field={'profileUserName'}/>
                 </div>
                 <div>
-                    <div className="m-10 block">
-                        <Label htmlFor="profilePassword" value="password"/>
+                    <div className="mb-2 block">
+                        <Label htmlFor="profilePassword" value="Create Password"/>
                     </div>
                     <TextInput
                         onChange={handleChange}
@@ -146,7 +146,7 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
                 </div>
                 <div>
                     <div className="mb-2 block">
-                        <Label htmlFor="profilePasswordConfirm" value="password confirm"/>
+                        <Label htmlFor="profilePasswordConfirm" value="Confirm Password"/>
                     </div>
                     <TextInput
                         value={values.profilePasswordConfirm}
@@ -158,9 +158,11 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
                     />
                     <DisplayError errors={errors} touched={touched} field={'profilePasswordConfirm'}/>
                 </div>
-                <Button color={'success'} type="submit">Submit</Button>
-                <Button  color={'failure'} type="reset" onClick={handleReset}>Reset</Button>
+                  <br/>
+                <Button color={'success'} type="submit">Submit</Button><br/>
+                <Button color={'failure'} type="reset" onClick={handleReset}>Reset</Button>
                 <DisplayStatus status={status}/>
+             </div>
             </form>
             <FormDebugger {...props} />
         </>
