@@ -8,6 +8,10 @@ const nextConfig = {
                 destination: `${process.env.REST_API_URL}/apis/:path*`
             }
         ]
+
     },
+}
+
 
 export default nextConfig;
+

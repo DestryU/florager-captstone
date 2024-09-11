@@ -26,11 +26,11 @@ create table if not exists plant
 create table if not exists find
 (
   find_id uuid PRIMARY KEY NOT NULL,
-  find_profile_id uuid references profile(profile_id),
-  find_plant_id uuid references plant(plant_id),
-  find_image_url varchar (128),
-  find_lat varchar (10),
-  find_lng varchar (10),
+  find_profile_id uuid references profile(profile_id) NOT NULL,
+  find_plant_id uuid references plant(plant_id) NOT NULL,
+  find_image_url varchar (128) NOT NULL,
+  find_lat varchar (10) NOT NULL,
+  find_lng varchar (10) NOT NULL,
   find_date_time timestamptz NOT NULL
 );
 

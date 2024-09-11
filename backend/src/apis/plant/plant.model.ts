@@ -13,6 +13,7 @@ export const PlantSchema = z.object({
         .max(128, {message: 'Please provide a valid scientific name (max 128 character'}),
 
     plantCommonNames: z.string({
+
         required_error: 'Plant common name required',
         invalid_type_error: 'Please provide a valid plant common name'})
         .min(1, {message: 'Please provide a valid plant common name (min 1 character'})
@@ -44,7 +45,7 @@ export async function selectPlantByPlantId (plantId: string) : Promise<Plant|nul
 
 export async function selectPlantByPlantCommonName (plantCommonName: string) : Promise<Plant[]> {
     const formattedPlantCommonName = `%${plantCommonName}%`
-    const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_names, plant_image_url FROM plant WHERE plant_common_name like ${formattedPlantCommonName}`
+    const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_names, plant_image_url FROM plant WHERE plant_common_names like ${formattedPlantCommonName}`
     const result = PlantSchema.array().max(1).parse(rowList)
     return result
 
