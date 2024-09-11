@@ -1,14 +1,27 @@
+'use client'
+
 import Mapbox from "react-map-gl"
 import {useState} from "react";
 import {Pin} from "@/app/components/Map/Pin";
+import {Find} from "@/utils/actions/find/find.validator";
 
-export function Map () {
-    const [points] = useState([
-        { lat: 35.332, lng: -106.652 },
-        { lat: 35.339, lng: -106.656 },
-        { lat: 35.40, lng: -106.666 },
-        { lat: 35.23, lng: -106.4444 }
-    ])
+type mapProps = {
+    finds: Find[]
+}
+
+export function Map (props: mapProps) {
+
+    const {finds} = props
+
+    const [points] = useState(finds.map(find => ({lat: find.findLat, lng: find.findLng})))
+
+    // const [points] = useState([
+    //     { lat: 35.332, lng: -106.652 },
+    //     { lat: 35.339, lng: -106.656 },
+    //     { lat: 35.40, lng: -106.666 },
+    //     { lat: 35.23, lng: -106.4444 },
+    //     { lat: 35, lng: -106.25 }
+    // ])
 
     return (
         <>
@@ -19,8 +32,8 @@ export function Map () {
                     zoom: 9
                 }}
                 mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-                style={{width: 1920, height: 300}}
-                mapStyle="mapbox://styles/mapbox/dark-v9"
+                style={{width: 1920, height: 750}}
+                mapStyle="mapbox://styles/mapbox/outdoors-v12"
             >
                 {points.map((point, index) => <Pin lat={point.lat} lng={point.lng} index={index} key={index}/>)}
             </Mapbox>
