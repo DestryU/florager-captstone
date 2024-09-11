@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Status } from '../../utils/interfaces/Status'
-import {Plant, PlantSchema, insertPlant, selectPlantByPlantId, selectPlantByPlantCommonName, selectPlantByPlantScientificName} from './plant.model'
+import {Plant, PlantSchema, insertPlant, selectPlantByPlantId, selectPlantByPlantCommonName, selectPlantByPlantScientificName,selectAllPlant} from './plant.model'
 import { zodErrorResponse } from '../../utils/response.utils'
 import {z} from 'zod'
 
@@ -10,13 +10,14 @@ export async function postPlantController( request: Request, response: Response 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
         }
-        const {plantScientificName, plantCommonNames, plantImageUrl} = validationResult.data
+        const {plantScientificName, plantCommonNames, plantImageUrl,plantReferenceUrl} = validationResult.data
 
         const plant: Plant = {
             plantId: '',
             plantScientificName,
-            plantCommonNames: [],
-            plantImageUrl
+            plantCommonNames,
+            plantImageUrl,
+            plantReferenceUrl
         }
 
         await insertPlant(plant)
@@ -59,8 +60,8 @@ export async function getPlantByPlantIdController(request: Request, response: Re
         const data = await selectPlantByPlantId(plantId)
 
         return response.json({status: 200, message: null, data})
-
     } catch (error) {
+
         return response.json({
             status: 500,
             message: '',
@@ -116,3 +117,14 @@ export async function getPlantByPlantScientificNameController(request: Request, 
     }
 }
 
+export async function getPlantByAllPlantController(request: Request, response: Response): Promise<Response<Status>> {
+    try {
+
+        const data = await selectAllPlant()
+
+        return response.json({stats: 200, message: "Hooray", data})
+    } catch (error) {
+        console.error(error)
+        return response.json({status: 500, message: null, data: null})
+    }
+}

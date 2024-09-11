@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { postPlantController } from './plant.controller'
+import {getPlantByAllPlantController, postPlantController} from './plant.controller'
 import { getPlantByPlantIdController } from "./plant.controller"
 import { getPlantByPlantCommonNameController } from "./plant.controller"
 import { getPlantByPlantScientificNameController } from "./plant.controller";
@@ -12,6 +12,7 @@ const router = Router()
 
 router.route('/')
     .post(postPlantController)
+    .get(getPlantByAllPlantController)
 
 router.route('/:plantId')
     .get(getPlantByPlantIdController)

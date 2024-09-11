@@ -1,7 +1,8 @@
 import {response} from "express";
 import {insertPlant, Plant} from "../../apis/plant/plant.model";
 
-async function dataDownloader() {
+
+export async function dataDownloader() {
 
 /*        {
             id: '',
@@ -27,7 +28,7 @@ async function dataDownloader() {
           plantScientificName: plantFromApi.scientificNameWithoutAuthor,
           plantCommonNames: plantFromApi.commonNames,
           plantImageUrl: individualData.results[0]?.media[0]?.identifier ?? individualData.results[0]?.media[1]?.identifier ,
-          // plantReferenceUrl: `https://www.gbif.org/species/${plantFromApi.gbifId}`
+          plantReferenceUrl: `https://www.gbif.org/species/${plantFromApi.gbifId}`
        }
 
        plant.plantImageUrl ? await insertPlant(plant) : console.log(individualData.results[0]?.media)

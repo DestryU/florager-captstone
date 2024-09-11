@@ -18,9 +18,10 @@ create table if not exists profile
 create table if not exists plant
 (
   plant_id uuid PRIMARY KEY NOT NULL,
-  plant_scientific_name varchar (128),
+  plant_scientific_name varchar (128) unique,
   plant_common_names jsonb,
-  plant_image_url varchar (128)
+  plant_image_url varchar (256) not null ,
+  plant_reference_url varchar (256) not null
 );
 
 create table if not exists find
