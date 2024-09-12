@@ -4,12 +4,17 @@ import { Dropdown, Navbar } from "flowbite-react";
 import {SignIn} from "@/app/components/SignIn";
 import {SignInModal} from "@/app/components/SignInModal";
 import SignUpForm from "@/app/sign-up/create-profile/page";
+import Link from "next/link";
 export function Navigation ()
 {
+  /*  async function loggedInProfile() {
+        'use server'
+        const loggedInUser = await getSession()
+    }*/
         return (
                 <>
                    <Navbar fluid rounded>
-                      <img src="/nmf-logo.png" className="mr-3 h-20 sm:h-20" alt="NM Floragers logo" />
+                      <Link href={"/"}> <img src="/nmf-logo.png" className="mr-3 h-20 sm:h-20" alt="NM Floragers logo"/></Link>
                         <span className="self-center whitespace-nowrap bg-transparent text-3xl font-black text-green-700 dark:text-white">New Mexico Floragers</span>
                          <div className="flex md:order-2">
                             <Navbar.Toggle />

@@ -24,7 +24,8 @@ export default function RootLayout(props : RootLayoutProps) {
     return (
         <html lang="en" suppressHydrationWarning>
         <head>
-            <link rel="icon" type="/favicon.png" href="/favicon.ico"/>
+            <title>New Mexico Floragers</title>
+            <link rel="icon" type="image/png" href="/favicon.io"/>
         </head>
         <body>
         <Navigation/>
