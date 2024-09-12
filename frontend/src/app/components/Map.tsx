@@ -4,6 +4,7 @@ import Mapbox from "react-map-gl"
 import {useState} from "react";
 import {Pin} from "@/app/components/Map/Pin";
 import {Find} from "@/utils/actions/find/find.validator";
+import {Modal} from "flowbite-react";
 
 type mapProps = {
     finds: Find[]
@@ -37,6 +38,10 @@ export function Map (props: mapProps) {
             >
                 {points.map((point, index) => <Pin lat={point.lat} lng={point.lng} index={index} key={index}/>)}
             </Mapbox>
+
+
+
+
         </>
     )
 }
