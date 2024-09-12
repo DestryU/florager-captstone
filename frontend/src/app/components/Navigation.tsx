@@ -2,6 +2,8 @@
 'use client'
 import { Dropdown, Navbar } from "flowbite-react";
 import {SignIn} from "@/app/components/SignIn";
+import {SignInModal} from "@/app/components/SignInModal";
+import SignUpForm from "@/app/sign-up/create-profile/page";
 export function Navigation ()
 {
         return (
@@ -27,8 +29,8 @@ export function Navigation ()
                                     <Dropdown label="Share" inline>
                                         <Dropdown.Item>Sign-up</Dropdown.Item>
                                     </Dropdown>
-                                    <SignIn/>
 
+                                <SignInModal/>
                                 </div>
 
                             </Navbar.Collapse>

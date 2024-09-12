@@ -6,7 +6,6 @@ import {z} from "zod";
 import {toFormikValidationSchema} from "zod-formik-adapter";
 import {DisplayError} from "@/app/components/DisplayError";
 import {DisplayStatus} from "@/app/components/DisplayStatus";
-import {FormDebugger} from "@/app/components/FormDebugger";
 
 const SignUpSchema = z.object( {
     profileUserName: z.string({required_error: 'profile user name is required'})
