@@ -29,5 +29,5 @@ export function isLoggedInController(request: Request, response: Response, next:
         return response.json(status)
 
     }
-
 }
+

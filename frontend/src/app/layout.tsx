@@ -12,7 +12,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 
 export const metadata: Metadata = {
     title: 'NM Floragers',
-    description: 'A website for discovering the plants of New Mexico',
+    description: 'A website for discovering the plants-mrkDEL of New Mexico',
 }
 
 type RootLayoutProps = {

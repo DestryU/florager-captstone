@@ -2,9 +2,14 @@
 
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
+import {fetchFindRecent} from "@/utils/actions/find/find.action";
 
 export default function ModalTemplate() {
     const [openModal, setOpenModal] = useState(false);
+
+    // const table = fetchFindRecent()
+    // console.log(table)
+
 
     return (
         <>
@@ -13,7 +18,6 @@ export default function ModalTemplate() {
                 <Modal.Header>Terms of Service</Modal.Header>
                 <Modal.Body>
                     <div className="space-y-6">
-                        This section is going to contain any code or information that we will want to use as a part of this particular modal.
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
