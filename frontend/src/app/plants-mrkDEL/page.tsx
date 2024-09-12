@@ -1,6 +1,6 @@
 // we're starting stuff
 
-import {PlantCard} from "@/app/plants/PlantCard";
+import {PlantCard} from "@/app/plants-mrkDEL/PlantCard";
 
 export default function () {
 
@@ -59,3 +59,7 @@ export default function () {
         </>
     )
 }
+
+
+
+
