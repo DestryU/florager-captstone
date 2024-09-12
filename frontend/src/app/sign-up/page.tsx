@@ -1,5 +1,5 @@
 
-import {Button} from "flowbite-react";
+import Link from "next/link";
 
 export default function () {
 
@@ -27,7 +27,7 @@ export default function () {
                     </ul>
                     <button type="button" color="success" className="self-center h-20 w-80 mt-2 md:mt-auto px-8 py-6 text-3xl text-white bg-green-700
                     hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-400 rounded-lg text-center
-                    dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">CREATE PROFILE</button>
+                    dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><Link href={"/sign-up/create-profile"}>CREATE PROFILE</Link></button>
                 </div>
             </div>
         </>

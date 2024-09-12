@@ -7,6 +7,7 @@ import {z} from "zod";
 import {useRouter} from "next/navigation"
 import {toFormikValidationSchema} from "zod-formik-adapter"
 import {DisplayError} from "./DisplayError"
+import {DisplayStatus} from "@/app/components/DisplayStatus";
 
 const formSchema =  z.object({
     profilePassword: z.string({
@@ -122,6 +123,7 @@ const handleSubmit = (values: FormSchema, actions: FormikHelpers<FormSchema>) =>
                   <br/> <Button className='ml-3 mb-4' color={'failure'} type={'reset'} onClick={handleReset}>Reset</Button><br/>
                </div>
            </form>
+           <DisplayStatus status={status}/>
        </>
        )
             }

@@ -27,7 +27,7 @@ export function Navigation ()
                                     </Dropdown>
 
                                     <Dropdown label="Share" inline>
-                                        <Dropdown.Item>Sign-up</Dropdown.Item>
+                                        <Dropdown.Item> <Navbar.Link href="/sign-up">Sign Up</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
 
                                 <SignInModal/>
