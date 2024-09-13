@@ -5,12 +5,15 @@ import {SignIn} from "@/app/components/SignIn";
 import {SignInModal} from "@/app/components/SignInModal";
 import SignUpForm from "@/app/sign-up/create-profile/page";
 import Link from "next/link";
-export function Navigation ()
+import {getSession} from "@/utils/session.utils";
+import {Profile} from "@/utils/models/profile/profile.validator";
+type NavProps = {
+    loggedInProfile: Profile | null
+}
+export function Navigation (props: NavProps)
 {
-  /*  async function loggedInProfile() {
-        'use server'
-        const loggedInUser = await getSession()
-    }*/
+  const {loggedInProfile} = props
+    console.log(loggedInProfile)
         return (
                 <>
                    <Navbar fluid rounded>
@@ -34,8 +37,8 @@ export function Navigation ()
                                     <Dropdown label="Share" inline>
                                         <Dropdown.Item> <Navbar.Link href="/sign-up">Sign Up</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
+                                    {loggedInProfile ? loggedInProfile.profileName : <SignInModal/>}
 
-                                <SignInModal/>
                                 </div>
 
                             </Navbar.Collapse>

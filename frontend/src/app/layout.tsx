@@ -7,6 +7,7 @@ import {Footer} from "@/app/components/Footer"
 
 
 import 'mapbox-gl/dist/mapbox-gl.css'
+import {getSession} from "@/utils/session.utils";
 
 
 
@@ -19,8 +20,11 @@ type RootLayoutProps = {
     children: React.ReactNode
 }
 
-export default function RootLayout(props : RootLayoutProps) {
+export default async function RootLayout(props : RootLayoutProps) {
     const { children } = props
+
+        const loggedInUser = await getSession()
+
     return (
         <html lang="en" suppressHydrationWarning>
         <head>
@@ -28,7 +32,7 @@ export default function RootLayout(props : RootLayoutProps) {
             <link rel="icon" type="image/png" href="/favicon.io"/>
         </head>
         <body>
-        <Navigation/>
+        <Navigation loggedInProfile={loggedInUser?.profile || null}/>
         {children}
         <Footer/>
         </body>

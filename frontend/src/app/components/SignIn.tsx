@@ -37,7 +37,7 @@ const handleSubmit = (values: FormSchema, actions: FormikHelpers<FormSchema>) =>
         const {profileEmail, profilePassword} = values
         const {setStatus, resetForm} = actions
 
-        fetch('/api/sign-in',
+        fetch('/apis/sign-in',
         {
             method: 'POST',
             body: JSON.stringify({profileEmail, profilePassword}),
