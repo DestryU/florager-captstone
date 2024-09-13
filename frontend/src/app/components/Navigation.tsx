@@ -1,12 +1,11 @@
 // Navigation Menu
 'use client'
 import { Dropdown, Navbar } from "flowbite-react";
-import {SignIn} from "@/app/components/SignIn";
 import {SignInModal} from "@/app/components/SignInModal";
-import SignUpForm from "@/app/sign-up/create-profile/page";
 import Link from "next/link";
 import {getSession} from "@/utils/session.utils";
-import {Profile} from "@/utils/models/profile/profile.validator";
+import {Profile} from "@/utils/actions/profile/profile.validator";
+import {SignOutButton} from "@/app/components/SignOutButton";
 type NavProps = {
     loggedInProfile: Profile | null
 }
@@ -37,7 +36,7 @@ export function Navigation (props: NavProps)
                                     <Dropdown label="Share" inline>
                                         <Dropdown.Item> <Navbar.Link href="/sign-up">Sign Up</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
-                                    {loggedInProfile ? loggedInProfile.profileName : <SignInModal/>}
+                                    {loggedInProfile ? <SignOutButton/> : <SignInModal/>}
 
                                 </div>
 
