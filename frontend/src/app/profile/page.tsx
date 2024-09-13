@@ -1,6 +1,4 @@
 'use server'
-import {ProfilePicButton} from "@/app/components/ProfilePicButton";
-import {UpdateSettings} from "@/app/components/UpdateSettings";
 import React from "react";
 import {UpdateProfileForm} from "@/app/profile/UpdateProfileForm";
 import {getProfileByProfileId} from "@/utils/actions/profile/profile.action";

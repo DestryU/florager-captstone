@@ -34,6 +34,8 @@ export function UpdateProfileForm(props: Props) {
     const {authorization, profile} = props
 
     const router = useRouter()
+    //
+    const [selectedImage, setSelectedImage] = React.useState<string | null>(null)
 
     if (authorization === undefined ) {
         return <></>
@@ -43,7 +45,7 @@ export function UpdateProfileForm(props: Props) {
         const {setStatus, resetForm} = actions
 
 
-        if(profile.profileUserName === values.profileUserName) {
+        if(profile.profileUserName === values.profileUserName, values.profileImageUrl = selectedImage) {
             preformUpdate()
         } else {
             fetch(`/apis/profile/profileUserName/${values.profileUserName}`).then(response => response.json())
@@ -116,9 +118,11 @@ export function UpdateProfileForm(props: Props) {
             fetch("/apis/image/",{
                 method: "POST",
                 headers: {
-                    'Authorization': authorization ?? ""
+                 //   'Authorization': authorization ?? "",
+                    'Content-Type': 'application/json'
                 },
-                body: profileImageUrl
+                body: JSON.stringify(values)
+
             })
                 .then(response => response.json())
                 .then(json => {
@@ -141,6 +145,7 @@ export function UpdateProfileForm(props: Props) {
             initialValues={
                 {
                     profilePronouns: props.profile.profilePronouns, profileUserName: props.profile.profileUserName}}
+
             onSubmit={handleSubmit}
             validationSchema={toFormikValidationSchema(FormSchema)}
         >
@@ -163,9 +168,10 @@ export function EditProfileFormContent(props: FormikProps<FormValues>) {
         setFieldValue,
         setFieldError,
         setFieldTouched
-    } = props
+    } = props;
 
     const [selectedImage, setSelectedImage] = React.useState<string | null>(null)
+
 
     return (
         <>
@@ -217,6 +223,8 @@ export function EditProfileFormContent(props: FormikProps<FormValues>) {
                         }}
                         setSelectedImage={setSelectedImage}
                     />
+
+                    {selectedImage && <img src={selectedImage} alt="profile image" className="mt-4"/>}
                     <DisplayUploadErrorProps errors={errors} field={'profileImageUrl'}/>
                     <div className={"flex mt-10"}>
                         <Button className={"mr-1"} color={"green"} type="submit"> Submit</Button>
