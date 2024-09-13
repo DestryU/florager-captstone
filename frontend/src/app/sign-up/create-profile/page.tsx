@@ -6,7 +6,6 @@ import {z} from "zod";
 import {toFormikValidationSchema} from "zod-formik-adapter";
 import {DisplayError} from "@/app/components/DisplayError";
 import {DisplayStatus} from "@/app/components/DisplayStatus";
-import {FormDebugger} from "@/app/components/FormDebugger";
 
 const SignUpSchema = z.object( {
     profileUserName: z.string({required_error: 'profile-first-take user name is required'})
@@ -32,7 +31,7 @@ const SignUpSchema = z.object( {
     })
 
 type SignUp = z.infer< typeof SignUpSchema>
-export function SignUpForm() {
+export default function SignUpForm() {
 
     const initialValues = {
         profileUserName: '',
@@ -56,11 +55,12 @@ export function SignUpForm() {
         })
             .then(response => response.json())
             .then(data => {
-                const type = 'failure'
-                setStatus({type, message: data.message})
+                let type = 'failure'
                 if (data.staus === 200) {
                     resetForm()
+                  type = 'success'
                 }
+                setStatus({type, message: data.message})
 
             })
             .catch(error => {
@@ -97,10 +97,11 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
 
     return (
         <>
+            <h1 className= "md:text-8xl sm:text-5xl text-green-700 font-black text-center mt-20" >Create Profile</h1>
             <form onSubmit={handleSubmit} className="flex min-h-auto gap-4 min-w-full flex-col grow">
-                <div>
+              <div className="mx-auto mt-16">
                     <div className="mb-2 block">
-                        <Label htmlFor="email1" value="email"/>
+                        <Label htmlFor="email1" value="Email"/>
                     </div>
                     <TextInput
                         onChange={handleChange}
@@ -112,10 +113,10 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
                         value={values.profileEmail}
                     />
                     <DisplayError errors={errors} touched={touched} field={'profileEmail'}/>
-                </div>
+
                 <div>
                     <div className="mb-2 block">
-                        <Label htmlFor="profileUserName" value="name"/>
+                        <Label htmlFor="profileUserName" value="Create Username"/>
                     </div>
                     <TextInput
                         onChange={handleChange}
@@ -130,7 +131,7 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
                 </div>
                 <div>
                     <div className="mb-2 block">
-                        <Label htmlFor="profilePassword" value="password"/>
+                        <Label htmlFor="profilePassword" value="Create Password"/>
                     </div>
                     <TextInput
                         onChange={handleChange}
@@ -145,7 +146,7 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
                 </div>
                 <div>
                     <div className="mb-2 block">
-                        <Label htmlFor="profilePasswordConfirm" value="password confirm"/>
+                        <Label htmlFor="profilePasswordConfirm" value="Confirm Password"/>
                     </div>
                     <TextInput
                         value={values.profilePasswordConfirm}
@@ -157,11 +158,12 @@ export function SignUpFormContent(props: FormikProps<SignUp>) {
                     />
                     <DisplayError errors={errors} touched={touched} field={'profilePasswordConfirm'}/>
                 </div>
-                <Button color={'success'} type="submit">Submit</Button>
-                <Button  color={'failure'} type="reset" onClick={handleReset}>Reset</Button>
+                  <br/>
+                <Button color={'success'} type="submit">Submit</Button><br/>
+                <Button color={'failure'} type="reset" onClick={handleReset}>Reset</Button>
                 <DisplayStatus status={status}/>
+             </div>
             </form>
-            <FormDebugger {...props} />
         </>
 
     )
