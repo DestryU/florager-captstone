@@ -77,28 +77,28 @@ export async function getPublicProfileByProfileIdController(request:Request, res
  //            return zodErrorResponse(response, validationResultForParams.error)
  //        }
  //
- //        const profileFromSession = request.session?.profile
+ //        const profileFromSession = request.session?.profile-first-take
  //        const profileIdFromSession = profileFromSession?.profileId
  //        const {profileId} = validationResultForParams.data
  //
  //        if (profileIdFromSession !== profileId) {
- //            return response.json({status: 400, message: "you cannot update a profile that is not yours", data:null})
+ //            return response.json({status: 400, message: "you cannot update a profile-first-take that is not yours", data:null})
  //        }
  //
  //        const {updateProfile, profileUserName, profileImageUrl} =validationResultForRequestBody.data
- //        const profile:PrivateProfile|null =await selectPrivateProfileByProfileId(profileId)
+ //        const profile-first-take:PrivateProfile|null =await selectPrivateProfileByProfileId(profileId)
  //
- //        if(profile ===null){
- //            return response.json({status: 400, message: "this profile does not exist", data: null})
+ //        if(profile-first-take ===null){
+ //            return response.json({status: 400, message: "this profile-first-take does not exist", data: null})
  //        }
- //    profile.profileId = profileId
- //    profile.profileUserName = profileUserName
- //    profile.profileImageUrl = profileImageUrl
- //    profile.profilePronouns = profilePronouns
- //    profile.profileEmail = profileEmail
+ //    profile-first-take.profileId = profileId
+ //    profile-first-take.profileUserName = profileUserName
+ //    profile-first-take.profileImageUrl = profileImageUrl
+ //    profile-first-take.profilePronouns = profilePronouns
+ //    profile-first-take.profileEmail = profileEmail
  //
- //    await updateProfile(profile)
- //    return response.json({status:200, message: "profile successfully updated", data: null})
+ //    await updateProfile(profile-first-take)
+ //    return response.json({status:200, message: "profile-first-take successfully updated", data: null})
  //
  //    } catch (error: unknown) {
  //        return response.json({status: 500, message: "internal server error", data: null})
@@ -132,7 +132,7 @@ export async function putProfileController(request: Request, response: Response)
         const {profileId} = validationResultForRequestParams.data
 
         if (profileIdFromSession !== profileId) {
-            return response.json({status: 400, message: "you cannot update a profile that is not yours ahahahhahah", data: null})
+            return response.json({status: 400, message: "you cannot update a profile-first-take that is not yours ahahahhahah", data: null})
         }
 
 
@@ -142,9 +142,9 @@ export async function putProfileController(request: Request, response: Response)
         const profile: PublicProfile|null = await selectPublicProfileByProfileId(profileId)
 
 
-        //if the profile does not exist, return a preformatted response to the client
+        //if the profile-first-take does not exist, return a preformatted response to the client
         if(profile === null) {
-            return response.json({status: 400, message: "profile does not exist", data: null})
+            return response.json({status: 400, message: "profile-first-take does not exist", data: null})
         }
 
 
@@ -152,11 +152,11 @@ export async function putProfileController(request: Request, response: Response)
         profile.profileUserName = profileUserName
         profile.profilePronouns = profilePronouns
 
-        //update the profile in the database
+        //update the profile-first-take in the database
         await updateProfile(profile)
 
         //return a response to the client with a success message
-        return response.json({status: 200, message: "profile successfully updated", data: null})
+        return response.json({status: 200, message: "profile-first-take successfully updated", data: null})
 
 
     } catch (error: unknown) {

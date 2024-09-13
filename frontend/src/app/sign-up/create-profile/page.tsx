@@ -8,7 +8,7 @@ import {DisplayError} from "@/app/components/DisplayError";
 import {DisplayStatus} from "@/app/components/DisplayStatus";
 
 const SignUpSchema = z.object( {
-    profileUserName: z.string({required_error: 'profile user name is required'})
+    profileUserName: z.string({required_error: 'profile-first-take user name is required'})
         .trim()
         .min(1, {message: 'please provide a valid username (min 1 character'})
         .max(128, {message: 'please provide a valid username (max 128 character'}),
