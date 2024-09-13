@@ -1,8 +1,12 @@
 'use server'
 
-import {Plant, PlantSchema} from "@/utils/actions/plant/plant.validator";
+import {PlantSchema} from "@/utils/actions/plant/plant.validator";
+import {z} from "zod";
 
-export async function fetchPlantById(plantId: string) : Promise<Plant[]> {
+export type Plant = z.infer<typeof PlantSchema>
+
+
+export async function fetchPlantById(plantId: string) : Promise<Plant> {
     const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/plant/${plantId}`, {
         method: "get",
         headers: {
@@ -15,5 +19,5 @@ export async function fetchPlantById(plantId: string) : Promise<Plant[]> {
             return response.json()
         }
     })
-    return PlantSchema.array().parse(data)
+    return PlantSchema.array().parse(data)[0]
 }
