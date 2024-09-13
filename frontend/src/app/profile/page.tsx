@@ -1,13 +1,26 @@
-'use client'
+'use server'
 import {ProfilePicButton} from "@/app/components/ProfilePicButton";
 import {UpdateSettings} from "@/app/components/UpdateSettings";
 import React from "react";
 import {UpdateProfileForm} from "@/app/profile/UpdateProfileForm";
+import {getProfileByProfileId} from "@/utils/actions/profile/profile.action";
+import {getSession} from "@/utils/session.utils";
+import {redirect} from "next/navigation";
 
-export default function ProfilePage () {
 
+
+export default async function ProfilePage () {
+    const loggedInUser = await getSession()
+
+    if (!loggedInUser) {
+        redirect ('/')
+    }
+
+    const profile= await getProfileByProfileId(loggedInUser.profile.profileId)
+    console.log(loggedInUser)
     return (
         <>
+
 
                 {/*//add header to page*/}
                 <div className={"grid sm:grid-cols-1 px-2.5 md:grid-cols-2 gap-5"}>
@@ -17,7 +30,7 @@ export default function ProfilePage () {
 
                         <div className={"py-5 mx-20"}>
                             {/*<UpdateSettings/>*/}
-                            <UpdateProfileForm authorization={''} profile={{profileId: 'uuid', profileEmail: 'fake@passrealvalues.com', profileUserName: 'notreal', profilePronouns: 'they/them', profileImageUrl:''}} />
+                            <UpdateProfileForm authorization={loggedInUser.authorization} profile={profile} />
 
                         </div>
                     </div>

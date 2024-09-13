@@ -21,7 +21,7 @@ type Props = {
 
 
 const FormSchema = PrivateProfileSchema
-    .pick({profileUserName: true, profilePronouns: true, profileEmail: true})
+    .pick({profileUserName: true, profilePronouns: true})
     .extend({
         profileImageUrl: z
             .any()
@@ -57,19 +57,6 @@ export function UpdateProfileForm(props: Props) {
                 })
         }
 
-        if(profile.profileEmail === values.profileEmail) {
-            preformUpdate()
-        } else {
-            fetch(`/apis/profile/profileEmail/${values.profileEmail}`).then(response => response.json())
-                .then((json) => {
-                    if(json.data === null) {
-                        preformUpdate()
-                    }
-                    else {
-                        setStatus({type: 'failure', message: 'Email already exists'})
-                    }
-                })
-        }
 
         if(profile.profilePronouns === values.profilePronouns) {
             preformUpdate()
@@ -89,7 +76,6 @@ export function UpdateProfileForm(props: Props) {
             else {
                 profile.profileUserName = values.profileUserName
                 profile.profilePronouns = values.profilePronouns
-                profile.profileEmail = values.profileEmail
                 submitUpdatedProfile(profile)
             }
 
@@ -143,7 +129,6 @@ export function UpdateProfileForm(props: Props) {
                         profile.profileImageUrl = json.message
                         profile.profileUserName = values.profileUserName
                         profile.profilePronouns = values.profilePronouns
-                        profile.profileEmail = values.profileEmail
                         console.log(profile)
                         submitUpdatedProfile(profile)
                     }
@@ -155,7 +140,7 @@ export function UpdateProfileForm(props: Props) {
         <Formik
             initialValues={
                 {
-                    profilePronouns: props.profile.profilePronouns, profileUserName: props.profile.profileUserName, profileEmail: props.profile.profileEmail}}
+                    profilePronouns: props.profile.profilePronouns, profileUserName: props.profile.profileUserName}}
             onSubmit={handleSubmit}
             validationSchema={toFormikValidationSchema(FormSchema)}
         >
@@ -218,21 +203,7 @@ export function EditProfileFormContent(props: FormikProps<FormValues>) {
                             name={'profilePronouns'}
                         />
                         <DisplayError errors={errors} touched={touched} field={'profilePronouns'}/>
-                    </div>
 
-                    <div>
-                    <div className="mb-2 block">
-                        <Label htmlFor="profileEmail" value={"Email"}/>
-                    </div>
-                    <TextInput
-                        id="profileEmail"
-                        type="text"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.profileEmail ?? ""}
-                        name={'profileEmail'}
-                    />
-                    <DisplayError errors={errors} touched={touched} field={'profileEmail'}/>
             </div>
 
                     <ImageUploadDropZone
