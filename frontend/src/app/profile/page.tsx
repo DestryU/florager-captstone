@@ -2,8 +2,9 @@
 import {ProfilePicButton} from "@/app/components/ProfilePicButton";
 import {UpdateSettings} from "@/app/components/UpdateSettings";
 import React from "react";
+import {UpdateProfileForm} from "@/app/profile/UpdateProfileForm";
 
-export default function staticProfilePage () {
+export default function ProfilePage () {
 
     return (
         <>
@@ -12,27 +13,16 @@ export default function staticProfilePage () {
                 <div className={"grid sm:grid-cols-1 px-2.5 md:grid-cols-2 gap-5"}>
                     <div className={"bg-white rounded-lg items-center"}>
                         <div className={"p-5 mx-auto"}>
-                            <img className={"mx-auto h-36 w-36 rounded-full"} src={"/happybush.png"}
-                                 alt="avatar1"/>
-                        </div>
-
-                        <div className={"p-10"}>
-                        <ProfilePicButton/>
-
-                        </div>
-
-                        <div className={"py-5 mx-auto"}>
-                            <p className={"bg-white text-2xl text-green-700 text-center font-bold"}>FlowerLoverJane</p>
-                            <p className={"bg-white text-2xl text-green-700 text-center font-bold"}>She/Her</p>
                         </div>
 
                         <div className={"py-5 mx-20"}>
-                            <UpdateSettings/>
+                            {/*<UpdateSettings/>*/}
+                            <UpdateProfileForm authorization={''} profile={{profileId: 'uuid', profileEmail: 'fake@passrealvalues.com', profileUserName: 'notreal', profilePronouns: 'they/them', profileImageUrl:''}} />
 
                         </div>
                     </div>
 
-                    <div className={"bg-green-700 rounded-lg p-5"}>
+                    {/*<div className={"bg-green-700 rounded-lg p-5"}>
                         <div className={"grid grid-cols-1 py-5 px-20"}>
                             <button type={"button"}
                                     className={"bg-white font-bold hover:bg-gray-400 focus:outline-none rounded-full text-4xl text-green-700 py-2.5 text-center me-2 mb-2"} onClick={() => {
@@ -53,7 +43,7 @@ export default function staticProfilePage () {
                                  alt="sunflower"/>
                             <img className="w-auto h-auto rounded-full border-2" src={"/poppy2.png"} alt="poppy2"/>
                         </div>
-                    </div>
+                    </div>*/}
 
                 </div>
         </>
