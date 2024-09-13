@@ -24,7 +24,7 @@ export default async function RootLayout(props : RootLayoutProps) {
     const { children } = props
 
         const loggedInUser = await getSession()
-
+console.log(loggedInUser)
     return (
         <html lang="en" suppressHydrationWarning>
         <head>
