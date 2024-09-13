@@ -10,23 +10,6 @@ export const PrivateProfileSchema = z.object({
         .trim()
         .min(1, {message: 'please provide a valid username (min 1 character'})
         .max(128, {message: 'please provide a valid username (max 128 character'}),
-/*
-    profileHash: z.string({
-        required_error: 'profileHash is required',
-        invalid_type_error: 'Please provide a valid profileHash'})
-        .length(97, {message: 'profile-first-take hash must be 97 characters'}),
-
-    profileActivationToken: z.string({
-        required_error: 'profileActivationToken is required',
-        invalid_type_error: 'Please provide a valid profileActivationToken'})
-        .length(32, {message: 'profile-first-take activation token is too long'})
-        .nullable(),*/
-
-    profileEmail: z.string({
-        required_error: 'profileEmail is required',
-        invalid_type_error: 'Please provide a valid profile-first-take email'})
-        .email({message: 'please provide a valid email'})
-        .max(128, {message: 'profile-first-take email is too long'}),
 
     profileImageUrl: z.string({
         required_error: 'profileImageUrl is required',
