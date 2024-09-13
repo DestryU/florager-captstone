@@ -1,4 +1,7 @@
-import {MainCarousel} from "@/app/components/MainCarousel";
+import{MainCarousel} from "@/app/components/MainCarousel";
+import React from "react";
+import {PlantCard} from "@/app/plant-cards/fetch-plants";
+
 
 
 export default function Home() {
@@ -42,7 +45,10 @@ export default function Home() {
                         with collaboration, and watches as Florager flourishes, inviting users to explore the botanical
                         wonders of our digital world.🌿🌼</p>
                 </h4>
-            </div>
+               </div>
+<div>
+    <PlantCard/>
+</div>
         </>
     )
 }

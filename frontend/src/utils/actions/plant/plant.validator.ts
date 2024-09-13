@@ -29,3 +29,4 @@ export const PlantSchema = z.object({
 })
 
 export type Plant = z.infer<typeof PlantSchema>
+
