@@ -1,5 +1,5 @@
 'use client'
-import {Profile, PrivateProfileSchema} from "@/app/utils/actions/profile/profile.validator"
+import {Profile, PrivateProfileSchema} from "@/utils/actions/profile/profile.validator"
 import {Button, Label, TextInput} from "flowbite-react";
 import React from "react";
 import {Formik, FormikHelpers, FormikProps} from "formik";

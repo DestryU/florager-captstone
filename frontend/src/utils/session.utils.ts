@@ -1,5 +1,5 @@
 "use server"
-import {Profile, PrivateProfileSchema} from "@/app/utils/actions/profile/profile.validator";
+import {Profile, PrivateProfileSchema} from "@/utils/actions/profile/profile.validator";
 
 import {unstable_noStore} from "next/cache";
 import {cookies} from "next/headers";

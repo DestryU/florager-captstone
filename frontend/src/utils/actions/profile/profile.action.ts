@@ -1,6 +1,6 @@
 'use server'
 
-import {Profile, PrivateProfileSchema} from "@/app/utils/actions/profile/profile.validator";
+import {Profile, PrivateProfileSchema} from "@/utils/actions/profile/profile.validator";
 
 export async function getProfileByProfileId(profileId: string) : Promise<Profile> {
     const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/profile/${profileId}`, {
