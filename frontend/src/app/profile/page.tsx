@@ -6,7 +6,6 @@ import {getSession} from "@/utils/session.utils";
 import {redirect} from "next/navigation";
 
 
-
 export default async function ProfilePage () {
     const loggedInUser = await getSession()
 
@@ -16,6 +15,7 @@ export default async function ProfilePage () {
 
     const profile= await getProfileByProfileId(loggedInUser.profile.profileId)
     console.log(loggedInUser)
+
     return (
         <>
 
@@ -31,6 +31,7 @@ export default async function ProfilePage () {
                             <UpdateProfileForm authorization={loggedInUser.authorization} profile={profile} />
 
                         </div>
+
                     </div>
 
                     {/*<div className={"bg-green-700 rounded-lg p-5"}>

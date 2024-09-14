@@ -1,7 +1,6 @@
 'use client'
 import {Profile, PrivateProfileSchema} from "@/utils/actions/profile/profile.validator"
 import {Button, Label, TextInput} from "flowbite-react";
-import React from "react";
 import {Formik, FormikHelpers, FormikProps} from "formik";
 import {toFormikValidationSchema} from "zod-formik-adapter";
 import {z} from "zod";
@@ -9,7 +8,7 @@ import {useRouter} from "next/navigation";
 import {DisplayError} from "@/app/components/DisplayError";
 import {DisplayStatus} from "@/app/components/DisplayStatus";
 import {FormDebugger} from "@/app/components/FormDebugger";
-//import React, {useCallback} from 'react'
+import React, {useCallback} from 'react'
 import {useDropzone} from 'react-dropzone'
 import {DisplayUploadErrorProps, ImageUploadDropZone} from "@/app/navigation/ImageUploadDropZone";
 import {green} from "next/dist/lib/picocolors";
@@ -30,22 +29,27 @@ const FormSchema = PrivateProfileSchema
 
 type FormValues = z.infer<typeof FormSchema>
 
+
 export function UpdateProfileForm(props: Props) {
     const {authorization, profile} = props
 
+    //
+    //const handleSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
+//
     const router = useRouter()
     //
-    const [selectedImage, setSelectedImage] = React.useState<string | null>(null)
+    const [selectedImage, setSelectedImage] = React.useState<string | null>(props.profile.profileImageUrl || null);
 
     if (authorization === undefined ) {
         return <></>
     }
 
     function handleSubmit(values: FormValues, actions: FormikHelpers<FormValues>) {
+       // values.profileImageUrl = selectedImage
         const {setStatus, resetForm} = actions
 
 
-        if(profile.profileUserName === values.profileUserName, values.profileImageUrl = selectedImage) {
+        if(profile.profileUserName === values.profileUserName) {
             preformUpdate()
         } else {
             fetch(`/apis/profile/profileUserName/${values.profileUserName}`).then(response => response.json())
@@ -54,22 +58,11 @@ export function UpdateProfileForm(props: Props) {
                         preformUpdate()
                     }
                     else {
-                        setStatus({type: 'failure', message: 'Profile name already exists'})
+                        setStatus({type: 'failure', message: 'Profile username already exists'})
                     }
                 })
         }
 
-
-        if(profile.profilePronouns === values.profilePronouns) {
-            preformUpdate()
-        } else {
-            fetch(`/apis/profile/profilePronouns/${values.profilePronouns}`).then(response => response.json())
-                .then((json) => {
-                    if(json.data === null) {
-                        preformUpdate()
-                    }
-                })
-        }
 
         function preformUpdate() {
             if(values.profileImageUrl) {
@@ -115,13 +108,14 @@ export function UpdateProfileForm(props: Props) {
         }
 
         function uploadImage(profileImageUrl: any) {
+            console.log('This is the upload function')
             fetch("/apis/image/",{
                 method: "POST",
                 headers: {
-                 //   'Authorization': authorization ?? "",
+                   'Authorization': authorization ?? "",
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(values)
+                body: profileImageUrl
 
             })
                 .then(response => response.json())
@@ -130,6 +124,7 @@ export function UpdateProfileForm(props: Props) {
                         setStatus({type: 'failure', message: json.message})
                     }
                     else {
+                        console.log('Image URL saved:', json.message);
                         profile.profileImageUrl = json.message
                         profile.profileUserName = values.profileUserName
                         profile.profilePronouns = values.profilePronouns
@@ -148,6 +143,7 @@ export function UpdateProfileForm(props: Props) {
 
             onSubmit={handleSubmit}
             validationSchema={toFormikValidationSchema(FormSchema)}
+            setSelectedImage={setSelectedImage}
         >
             {EditProfileFormContent}
         </Formik>

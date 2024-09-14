@@ -152,7 +152,7 @@ export async function putProfileController(request: Request, response: Response)
         profile.profileUserName = profileUserName
         profile.profilePronouns = profilePronouns
 
-        //update the profile-first-take in the database
+        //update the profile in the database
         await updateProfile(profile)
 
         //return a response to the client with a success message
