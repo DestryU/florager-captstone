@@ -15,7 +15,8 @@ export const PlantSchema = z.object({
         required_error: 'Plant common name required'})
         .min(1, {message: 'Please provide a valid plant common name (min 1 character'})
         .max(128, {message: 'Please provide a valid plant common name (max 128 characters'})
-        .array(),
+        .array()
+        .nullable(),
 
     plantImageUrl: z.string({
         required_error: 'Plant image url is required'})
@@ -29,3 +30,4 @@ export const PlantSchema = z.object({
 })
 
 export type Plant = z.infer<typeof PlantSchema>
+
