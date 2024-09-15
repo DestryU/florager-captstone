@@ -10,11 +10,12 @@ import {DisplayStatus} from "@/app/components/DisplayStatus";
 import {toFormikValidationSchema} from "zod-formik-adapter";
 import {FormDebugger} from "@/app/components/FormDebugger";
 import {CommentCard} from "@/app/components/CommentCard";
-import {fetchAllComments} from "@/utils/actions/comments/comment.model";
+import {fetchAllComments} from "@/utils/actions/comments/comment.action";
 import {Profile} from "@/utils/actions/profile/profile.validator";
 
 type Props = {
     session: Session
+    profile: Profile
 }
 const FormSchema = CommentSchema.pick({commentText: true})
 
@@ -32,13 +33,14 @@ export function CommentForm(props: Props) {
     }
 
 
+
     const handleSubmit = (values: Values, actions: FormikHelpers<Values>) => {
         const comment = {
             commentProfileId: session.profile.profileId,
             commentId: null,
             commentFindId: null,
             commentText: values.commentText,
-            commentDatetime: ''
+            commentDateTime: null
         }
         const {setStatus, resetForm} = actions
         fetch(`/apis/comment`, {
@@ -74,31 +76,31 @@ export function CommentForm(props: Props) {
 export function CommentFormContent(props: FormikProps<Values>) {
     const {handleSubmit, handleChange, handleBlur, status, resetForm, errors, touched, values} = props
 
-    return (
+            return (
         <>
             <form onSubmit={handleSubmit}>
-                <div className="w-full border border-gray-200">
-                    <div className="px-4 py-2 bg-white dark:bg-gray-800">
-                        <label htmlFor="comment" className="sr-only">Your Post</label>
+                <div className="border-4 border-green-700">
+                    <div className="px-10 py-5">
+                        <label htmlFor="comment" className="sr-only">Your Comment</label>
                         <textarea
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.commentText}
-                            name={"commentContent"}
+                            name={"commentText"}
                             id="comment"
                             rows={4}
-                            className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
+                            className="w-full text-sm text-black bg-white focus:ring-0">
 				</textarea>
                         <DisplayError errors={errors} touched={touched} field={"commentText"}/>
                     </div>
-                    <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                    <div className="flex items-center justify-between px-3 py-2 border-t">
                         <button type="submit"
-                                className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
-                            Post comment
+                                className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-green-700 rounded-lg focus:ring-4 focus:ring-green-200 dark:focus:ring-green-900 hover:bg-green-800">
+                            Post Comment
                         </button>
-                        <div className="flex ps-0 space-x-1 rtl:space-x-reverse sm:ps-2">
+                        {/*<div className="flex ps-0 space-x-1 rtl:space-x-reverse sm:ps-2">
 
-                        </div>
+                        </div>*/}
                     </div>
                 </div>
             </form>

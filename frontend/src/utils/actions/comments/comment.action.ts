@@ -4,10 +4,10 @@ import {unstable_noStore as noStore} from "next/cache";
 export const CommentSchema = z.object({
     commentId: z.string({required_error: 'please provide a valid commentId or null', invalid_type_error:"commentId must be a uuid or null"}).uuid({message: 'please provide a valid uuid for commentId'}),
     commentProfileId: z.string({required_error: 'please provide a valid commentProfileId', invalid_type_error: "commentProfileId must be a uuid"}).uuid({message: 'please provide a valid uuid for commentProfileId'}),
-    commentFindId: z.string({required_error: 'please provide a valid commentReplyThreadId or null', invalid_type_error: "commentReplyThreadId must be a uuid"}).uuid({message: 'please provide a valid uuid for commentReplyThreadId'}).nullable(),
+    commentFindId: z.string({required_error: 'please provide a valid commentFindId or null', invalid_type_error: "commentFindId must be a uuid"}).uuid({message: 'please provide a valid uuid for commentFindId'}).nullable(),
     commentText:
         z.string({required_error: "content for a comment is required"}).max(255, {message: 'please provide a valid commentText'}),
-    commentDatetime:
+    commentDateTime:
         z.coerce.date({required_error: 'please provide a valid commentDatetime or null', invalid_type_error: "comment date time is not a valid date"}).nullable(),
 })
 export type Comment = z.infer<typeof CommentSchema>

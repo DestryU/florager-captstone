@@ -1,9 +1,7 @@
-import {Comment} from "@/utils/actions/comments/comment.model";
+import {Comment} from "@/utils/actions/comments/comment.action";
 import {getProfileByProfileId} from "@/utils/actions/profile/profile.action";
-import {CommentForm} from "@/app/comments/CommentForm";
 import React from "react";
 import {format} from 'date-fns';
-import {Session} from "@/utils/session.utils"
 
 type Props = {
     comment: Comment
@@ -12,8 +10,7 @@ type Props = {
 export async function CommentCard(props: Props) {
     const {comment} = props
     const profile = await getProfileByProfileId(comment.commentProfileId)
-
-    // const date = format(comment:commentDatetime, 'MMMM do, yyyy')
+    const date =  comment.commentDateTime ? format(new Date(comment.commentDateTime), 'MMMM dd, yyyy') : 'Invalid Date'
 
     return (
         <article className="p-6 border border-gray-200 text-base">
@@ -26,9 +23,8 @@ export async function CommentCard(props: Props) {
                         className="mr-2 w-6 h-6 rounded-full" src={profile.profileImageUrl ?? '/profile.png'}
                     />{profile.profileUserName}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {/*<time dateTime={"2022-02-08"}*/}
-                        {/*      title={"February 8th, 2022"}>{comment.commentDatetime?.toLocaleString()}*/}
-                        {/*</time>*/}
+                        <time dateTime={comment.commentDateTime ? new Date(comment.commentDateTime).toLocaleString() : ''} title={date}>
+                        </time>
                     </p>
                 </div>
             </footer>

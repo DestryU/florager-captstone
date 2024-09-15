@@ -6,8 +6,8 @@ export const CommentSchema = z.object({
     commentFindId: z.string({required_error: 'please provide a valid commentFindId or null'}).uuid({message: 'please provide a valid uuid for commentFindId'}).nullable(),
     commentText:
         z.string().max(255, {message: 'please provide a valid commentText'}),
-    commentDatetime:
-        z.coerce.date({required_error: 'please provide a valid threadDatetime or null'}),
+    commentDateTime:
+        z.coerce.date({required_error: 'please provide a valid commentDatetime or null'}),
 })
 
 export type Comment = z.infer<typeof CommentSchema>
