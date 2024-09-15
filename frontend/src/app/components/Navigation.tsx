@@ -29,7 +29,7 @@ export function Navigation (props: NavProps)
 
                                     <Dropdown label="Explore" inline>
                                         <Dropdown.Item>Explore Plants</Dropdown.Item>
-                                        <Dropdown.Item>Explore Map</Dropdown.Item>
+                                        <Dropdown.Item><Navbar.Link href="/intteractive-map">Explore Map</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
 
                                     <Dropdown label="Share" inline>
