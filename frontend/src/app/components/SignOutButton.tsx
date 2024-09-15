@@ -1,8 +1,11 @@
 import {Button} from "flowbite-react";
+// @ts-ignore
+export function SignOutButton({signOut}) {
 
-export function SignOutButton() {
     return (
-        <Button onClick={() => true} color="red-600">Sign Out</Button>
+        <>
+        <Button onClick={signOut} color="bg:red-600">Sign Out</Button>
+        </>
         )
 }
 

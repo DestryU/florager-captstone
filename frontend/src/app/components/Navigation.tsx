@@ -8,10 +8,11 @@ import {Profile} from "@/utils/actions/profile/profile.validator";
 import {SignOutButton} from "@/app/components/SignOutButton";
 type NavProps = {
     loggedInProfile: Profile | null
+    signOut: any
 }
 export function Navigation (props: NavProps)
 {
-  const {loggedInProfile} = props
+  const {signOut, loggedInProfile} = props
     console.log(loggedInProfile)
         return (
                 <>
@@ -36,7 +37,7 @@ export function Navigation (props: NavProps)
                                     <Dropdown label="Share" inline>
                                         <Dropdown.Item> <Navbar.Link href="/sign-up">Sign Up</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
-                                    {loggedInProfile ? <SignOutButton/> : <SignInModal/>}
+                                    {loggedInProfile ? <SignOutButton signOut={signOut}/> : <SignInModal/>}
 
                                 </div>
 
