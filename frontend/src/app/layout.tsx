@@ -31,11 +31,13 @@ console.log(loggedInUser)
             <title>New Mexico Floragers</title>
             <link rel="icon" type="image/png" href="/favicon.io"/>
         </head>
-        <body>
+        <body className="flex flex-col min-h-screen">
         <Navigation loggedInProfile={loggedInUser?.profile || null}/>
+        <main className="flex-grow">
         {children}
+        </main>
         <Footer/>
         </body>
         </html>
-    )
+    );
 }

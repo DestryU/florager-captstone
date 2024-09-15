@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Status } from '../../utils/interfaces/Status'
-import {Plant, PlantSchema, insertPlant, selectPlantByPlantId, selectPlantByPlantCommonName, selectPlantByPlantScientificName,selectAllPlant} from './plant.model'
+import {Plant, PlantSchema, insertPlant, selectPlantByPlantId, selectPlantByPlantCommonName, selectPlantByPlantScientificName,selectAllPlants} from './plant.model'
 import { zodErrorResponse } from '../../utils/response.utils'
 import {z} from 'zod'
 
@@ -117,10 +117,10 @@ export async function getPlantByPlantScientificNameController(request: Request, 
     }
 }
 
-export async function getPlantByAllPlantController(request: Request, response: Response): Promise<Response<Status>> {
+export async function getAllPlantsController(request: Request, response: Response): Promise<Response<Status>> {
     try {
 
-        const data = await selectAllPlant()
+        const data = await selectAllPlants()
 
         return response.json({stats: 200, message: "Hooray", data})
     } catch (error) {

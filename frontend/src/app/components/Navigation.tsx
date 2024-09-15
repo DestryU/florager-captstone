@@ -6,7 +6,7 @@ import {SignInModal} from "@/app/components/SignInModal";
 import SignUpForm from "@/app/sign-up/create-profile/page";
 import Link from "next/link";
 import {getSession} from "@/utils/session.utils";
-import {Profile} from "@/utils/models/profile/profile.validator";
+import {Profile} from "@/utils/actions/profile/profile.validator";
 type NavProps = {
     loggedInProfile: Profile | null
 }
