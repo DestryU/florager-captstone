@@ -18,7 +18,8 @@ export const PlantSchema = z.object({
         invalid_type_error: 'Please provide a valid plant common name'})
         .min(1, {message: 'Please provide a valid plant common name (min 1 character'})
         .max(128, {message: 'Please provide a valid plant common name (max 128 characters'})
-        .array(),
+        .array()
+        .nullable(),
 
     plantImageUrl: z.string({
         required_error: 'Plant image url is required',
@@ -63,7 +64,7 @@ export async function selectPlantByPlantScientificName (plantScientificName: str
     return result
 
 }
-export async function selectAllPlant(): Promise<Plant[]> {
+export async function selectAllPlants(): Promise<Plant[]> {
     const rowList = <Plant[]>await sql`SELECT plant_id, plant_scientific_name, plant_common_names, plant_image_url, plant_reference_url FROM plant`
     return PlantSchema.array().parse(rowList)
 }

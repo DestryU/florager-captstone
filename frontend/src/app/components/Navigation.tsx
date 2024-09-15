@@ -3,8 +3,9 @@
 import { Dropdown, Navbar } from "flowbite-react";
 import {SignInModal} from "@/app/components/SignInModal";
 import Link from "next/link";
-import {Profile} from "@/utils/actions/profile/profile.validator";
 import {SignOutButton} from "@/app/components/SignOutButton";
+import {Profile} from "@/utils/actions/profile/profile.validator";
+
 type NavProps = {
     loggedInProfile: Profile | null
 }
