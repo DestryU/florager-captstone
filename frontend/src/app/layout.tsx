@@ -8,6 +8,7 @@ import {Footer} from "@/app/components/Footer"
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 import {getSession} from "@/utils/session.utils";
+import {signOut} from "@/utils/actions/sign-out/sign-out.action";
 
 
 
@@ -22,7 +23,9 @@ type RootLayoutProps = {
 
 export default async function RootLayout(props : RootLayoutProps) {
     const { children } = props
-
+async function signOutClicked() {
+        await signOut()
+}
         const loggedInUser = await getSession()
 console.log(loggedInUser)
     return (
