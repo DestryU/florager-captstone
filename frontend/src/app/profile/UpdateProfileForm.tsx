@@ -50,12 +50,12 @@ export function UpdateProfileForm(props: Props) {
 
 
         if(profile.profileUserName === values.profileUserName) {
-            preformUpdate()
+            performUpdate()
         } else {
             fetch(`/apis/profile/profileUserName/${values.profileUserName}`).then(response => response.json())
                 .then((json) => {
                     if(json.data === null) {
-                        preformUpdate()
+                        performUpdate()
                     }
                     else {
                         setStatus({type: 'failure', message: 'Profile username already exists'})
@@ -64,7 +64,7 @@ export function UpdateProfileForm(props: Props) {
         }
 
 
-        function preformUpdate() {
+        function performUpdate() {
             if(values.profileImageUrl) {
                 uploadImage(values.profileImageUrl)
             }
@@ -96,6 +96,7 @@ export function UpdateProfileForm(props: Props) {
                     type = 'success'
                     if(profile.profileUserName !== values.profileUserName) {
                         setTimeout(() => {
+                            router.refresh()
                                 router.push(`/profile/${values.profileUserName}`)
                             }
                         )
@@ -112,8 +113,7 @@ export function UpdateProfileForm(props: Props) {
             fetch("/apis/image/",{
                 method: "POST",
                 headers: {
-                   'Authorization': authorization ?? "",
-                    'Content-Type': 'application/json'
+                   'Authorization': authorization ?? ""
                 },
                 body: profileImageUrl
 
