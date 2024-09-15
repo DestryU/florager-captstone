@@ -1,10 +1,11 @@
 // Navigation Menu
 'use client'
-import { Dropdown, Navbar } from "flowbite-react";
+import {Button, Dropdown, Navbar} from "flowbite-react";
 import {SignInModal} from "@/app/components/SignInModal";
 import Link from "next/link";
 import {Profile} from "@/utils/actions/profile/profile.validator";
 import {SignOutButton} from "@/app/components/SignOutButton";
+import ProfileButton from "@/app/profile/page";
 type NavProps = {
     loggedInProfile: Profile | null
 }
@@ -24,18 +25,20 @@ export function Navigation (props: NavProps)
                                 <Navbar.Link href="#" active></Navbar.Link>
                                 <div className={"flex flex-wrap gap-4 text-3xl text-green-700 hover:text-green-400 font-black bg-transparent"}>
                                     <Dropdown label="Identify" inline>
-                                        <Dropdown.Item>Identify Plants</Dropdown.Item>
+                                        <Dropdown.Item><Navbar.Link href="/identifier">Identify Plants</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
 
                                     <Dropdown label="Explore" inline>
                                         <Dropdown.Item>Explore Plants</Dropdown.Item>
-                                        <Dropdown.Item>Explore Map</Dropdown.Item>
+                                        <Dropdown.Item><Navbar.Link href="/interactive-map">Explore Map</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
 
                                     <Dropdown label="Share" inline>
                                         <Dropdown.Item> <Navbar.Link href="/sign-up">Sign Up</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
-                                    {loggedInProfile ? <SignOutButton/> : <SignInModal/>}
+                                    {loggedInProfile ?
+                                        <><SignOutButton/>  <Link href={"/profile"}><Button className={"bg-green-700"}>Profile</Button></Link></>
+                                        : <SignInModal/>}
 
                                 </div>
 

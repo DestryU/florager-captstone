@@ -5,10 +5,10 @@ export function SignOutButton() {
 
     return (
         <>
-        <Button onClick={async()=>{
+        <Button className={"bg-green-700"} onClick={async()=>{
            await signOut()
-        // window.location.href="/"
-        }} color="bg:red-600">Sign Out</Button>
+        window.location.href="/"
+        }} >Sign Out</Button>
         </>
         )
 }
