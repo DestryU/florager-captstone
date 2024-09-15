@@ -35,7 +35,7 @@ console.log(loggedInUser)
             <link rel="icon" type="image/png" href="/favicon.io"/>
         </head>
         <body>
-        <Navigation signOut={signOutClicked} loggedInProfile={loggedInUser?.profile || null}/>
+        <Navigation loggedInProfile={loggedInUser?.profile || null}/>
         {children}
         <Footer/>
         </body>

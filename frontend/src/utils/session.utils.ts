@@ -17,9 +17,8 @@ export async function getSession(): Promise<Session|undefined > {
 
     const cookieStore = cookies()
     const jwtToken = cookieStore.get("jwt-token")
-    console.log(jwtToken)
-    if ( jwtToken) {
-        return  setJwtToken(jwtToken.value)
+    if (jwtToken?.value)  {
+        return setJwtToken(jwtToken.value)
 
     } else {
         return undefined
@@ -36,9 +35,9 @@ export async function clearSession() {
 
 async  function setJwtToken(jwtToken: string):Promise<Session | undefined> {
     try {
-        const  parsedJwtToken = jwtDecode(jwtToken) as any
+        const parsedJwtToken = jwtDecode(jwtToken) as any
 
-        if(parsedJwtToken &&  currentTimeInSeconds < parsedJwtToken.exp) {
+        if(parsedJwtToken && currentTimeInSeconds < parsedJwtToken.exp) {
             return  {
                 profile: PrivateProfileSchema.parse(parsedJwtToken.auth),
                 authorization: jwtToken,

@@ -3,16 +3,14 @@
 import { Dropdown, Navbar } from "flowbite-react";
 import {SignInModal} from "@/app/components/SignInModal";
 import Link from "next/link";
-import {getSession} from "@/utils/session.utils";
 import {Profile} from "@/utils/actions/profile/profile.validator";
 import {SignOutButton} from "@/app/components/SignOutButton";
 type NavProps = {
     loggedInProfile: Profile | null
-    signOut: any
 }
 export function Navigation (props: NavProps)
 {
-  const {signOut, loggedInProfile} = props
+  const {loggedInProfile} = props
     console.log(loggedInProfile)
         return (
                 <>
@@ -37,7 +35,7 @@ export function Navigation (props: NavProps)
                                     <Dropdown label="Share" inline>
                                         <Dropdown.Item> <Navbar.Link href="/sign-up">Sign Up</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
-                                    {loggedInProfile ? <SignOutButton signOut={signOut}/> : <SignInModal/>}
+                                    {loggedInProfile ? <SignOutButton/> : <SignInModal/>}
 
                                 </div>
 
