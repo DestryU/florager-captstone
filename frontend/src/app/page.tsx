@@ -1,4 +1,9 @@
-import {MainCarousel} from "@/app/components/MainCarousel";
+
+
+import{MainCarousel} from "@/app/components/MainCarousel";
+import React from "react";
+import {PlantCard} from "@/app/plant-cards/PlantCard";
+
 
 
 export default function Home() {
@@ -11,6 +16,7 @@ export default function Home() {
                         className={"flex flex-col md:flex-row items-center justify-center rounded-2xl bg-white border-5"}>
                         <button
                             className={"flex flex-col justify-around identify-background bg-no-repeat bg-cover bg-center size-44 rounded-full text-center m-[3rem] border-solid border-b-cyan-400 border-4"}>
+
                             <p className={"hover:text-cyan-400 text-white text-3xl md:text-center"}>Identify NM
                                 Plants</p>
                         </button>
@@ -42,7 +48,7 @@ export default function Home() {
                         with collaboration, and watches as Florager flourishes, inviting users to explore the botanical
                         wonders of our digital world.🌿🌼</p>
                 </h4>
-            </div>
+               </div>
         </>
     )
 }

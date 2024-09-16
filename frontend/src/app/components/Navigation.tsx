@@ -1,12 +1,10 @@
 // Navigation Menu
 'use client'
-import { Dropdown, Navbar } from "flowbite-react";
-import {SignIn} from "@/app/components/SignIn";
+import {Button, Dropdown, Navbar} from "flowbite-react";
 import {SignInModal} from "@/app/components/SignInModal";
-import SignUpForm from "@/app/sign-up/create-profile/page";
 import Link from "next/link";
-import {getSession} from "@/utils/session.utils";
-import {Profile} from "@/utils/models/profile/profile.validator";
+import {Profile} from "@/utils/actions/profile/profile.validator";
+import {SignOutButton} from "@/app/components/SignOutButton";
 type NavProps = {
     loggedInProfile: Profile | null
 }
@@ -26,18 +24,20 @@ export function Navigation (props: NavProps)
                                 <Navbar.Link href="#" active></Navbar.Link>
                                 <div className={"flex flex-wrap gap-4 text-3xl text-green-700 hover:text-green-400 font-black bg-transparent"}>
                                     <Dropdown label="Identify" inline>
-                                        <Dropdown.Item>Identify Plants</Dropdown.Item>
+                                        <Dropdown.Item><Navbar.Link href="/identifier">Identify Plants</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
 
                                     <Dropdown label="Explore" inline>
                                         <Dropdown.Item>Explore Plants</Dropdown.Item>
-                                        <Dropdown.Item>Explore Map</Dropdown.Item>
+                                        <Dropdown.Item><Navbar.Link href="/interactive-map">Explore Map</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
 
                                     <Dropdown label="Share" inline>
                                         <Dropdown.Item> <Navbar.Link href="/sign-up">Sign Up</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
-                                    {loggedInProfile ? loggedInProfile.profileName : <SignInModal/>}
+                                    {loggedInProfile ?
+                                        <><SignOutButton/>  <Link href={"/profile"}><Button className={"bg-green-700"}>Profile</Button></Link></>
+                                        : <SignInModal/>}
 
                                 </div>
 

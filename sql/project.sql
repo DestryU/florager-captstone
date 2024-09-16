@@ -3,6 +3,7 @@ drop table if exists find;
 drop table if exists plant;
 drop table if exists profile;
 
+select plant_common_names from plant where plant_common_names = '[]';
 
 create table if not exists profile
 (

@@ -54,6 +54,7 @@ const handleSubmit = (values: FormSchema, actions: FormikHelpers<FormSchema>) =>
         if(json.status === 200) {
             resetForm()
             type = 'success'
+            router.refresh()
         }
         setStatus({type, message: json.message})
     })
