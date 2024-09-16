@@ -2,7 +2,7 @@
 'use client'
 import React, { useState } from "react";
 
-export function UploadPhoto() {
+export function FormerUploadPhoto() {
     const [file, setFile] = useState(null);
 
     const handleChange = (event: any) => {
@@ -23,5 +23,5 @@ export function UploadPhoto() {
     );
 }
 
-export default UploadPhoto;
+export default FormerUploadPhoto;
 

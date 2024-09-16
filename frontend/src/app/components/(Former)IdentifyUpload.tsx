@@ -2,7 +2,7 @@
 'use client'
 import React, { useState } from "react";
 
-export function IdentifyUpload() {
+export function FormerIdentifyUpload() {
     const [file, setFile] = useState(null);
 
     const handleChange = (event: any) => {

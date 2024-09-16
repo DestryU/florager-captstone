@@ -2,7 +2,7 @@
 "use client";
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
-import {UploadPhoto} from "@/app/components/UploadPhoto"
+import {FormerUploadPhoto} from "@/app/components/(Former)UploadPhoto"
 
 export function ProfilePicButton() {
     const [openModal, setOpenModal] = useState(false);
@@ -13,7 +13,7 @@ export function ProfilePicButton() {
             <Modal show={openModal} onClose={() => setOpenModal(false)}>
                 <Modal.Header>Upload from Your Device</Modal.Header>
                 <Modal.Body>
-                    <UploadPhoto></UploadPhoto>
+                    <FormerUploadPhoto></FormerUploadPhoto>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={() => setOpenModal(false)} className={"bg-green-700 hover:bg-green-200"}>Set as Profile Pic</Button>
