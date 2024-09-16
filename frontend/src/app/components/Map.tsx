@@ -8,6 +8,7 @@ import {Modal} from "flowbite-react";
 
 type mapProps = {
     finds: Find[]
+    popups: string[]
 }
 
 
@@ -23,7 +24,7 @@ to break this entire system. This code is a rollback to that last stable version
 
 export function Map (props: mapProps) {
 
-    const {finds} = props
+    const {finds, popups} = props
 
     return (
         <>
@@ -34,10 +35,10 @@ export function Map (props: mapProps) {
                     zoom: 9
                 }}
                 mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-                style={{width: 1920, height: 750}}
+                style={{width: 1900, height: 740}}
                 mapStyle="mapbox://styles/mapbox/outdoors-v12"
             >
-                {finds.map(find => <Pin find={find}/>)}
+                {finds.map(find => <Pin find={find} popups={popups}/>)}
             </Mapbox>
         </>
     )

@@ -1,3 +1,5 @@
+'use client'
+
 import {Marker, Popup} from "react-map-gl";
 import {Find} from "@/utils/actions/find/find.validator";
 import DistinctFindCard from "@/app/components/FindCard";
@@ -8,11 +10,12 @@ import {useState} from "react";
 
 
 type Props = {
-    find: Find
+    find: Find,
+    popups: string[]
 }
 
 export function Pin(props: Props) {
-    const {find} = props
+    const {find, popups} = props
     const {findLat, findLng, findId} = find
     const [showPopup, setShowPopup] = useState(false)
 
@@ -35,11 +38,11 @@ export function Pin(props: Props) {
                 latitude={findLat}
                 onClose={() => setShowPopup(false)}
             >
-                <div>
-                    find.{find.findPlantId}
+                <div className={"h-[100px] w-[125px]"}>
+                    {find.findPlantId}
+
+                    {popups[0]}
                 </div>
-
-
 
             </Popup>: <></>}
 
