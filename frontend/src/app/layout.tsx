@@ -32,9 +32,9 @@ console.log(loggedInUser)
             <link rel="icon" type="image/png" href="/favicon.io"/>
         </head>
         <body>
-        {/*<Navigation loggedInProfile={loggedInUser?.profile || null}/>*/}
+        <Navigation loggedInProfile={loggedInUser?.profile || null}/>
         {children}
-        {/*<Footer/>*/}
+        <Footer/>
         </body>
         </html>
     )

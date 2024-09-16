@@ -3,7 +3,7 @@ import React from "react";
 
 import { Card } from "flowbite-react";
 
-import {fetchFindId} from "@/utils/actions/find/find.action";
+import {fetchFindId, fetchFindRecent} from "@/utils/actions/find/find.action";
 import {fetchPlantById} from "@/utils/actions/plant/plant.action";
 import {getProfileByProfileId} from "@/utils/actions/profile/profile.action";
 
@@ -12,24 +12,27 @@ type Props = {
     findId: string,
 }
 
+/*
+This component creates a plant card based off the Flowbite 'Card' template.
+It takes a single Find ID as a prop, and returns all relevant information based on that find.
 
-// Creates a populates a card with information about a Find. Requires a FindId
+I'm stuck because I want to call this component as a modal whenever a map pin is
+clicked, and I don't know how to do that.
+ */
 export default async function DistinctFindCard(findId: Props) {
 
-    //Fetches for all relevant information
     const distinctFind = await fetchFindId(findId.findId)
     const distinctPlant = await fetchPlantById(`${distinctFind.findPlantId}`)
     const distinctUser = await getProfileByProfileId(`${distinctFind.findProfileId}`)
 
-    //Uses the CommonName array to make a string of items, seperated by commas.
-    //The last item in the array is appended with the word 'and'
+    /*
+    This chunk of code handles multiple common names for plants, as well as what to
+    do if a plant has only one common name. The majority of the code is the styling.
+     */
     const altNamesList = distinctPlant.plantCommonNames.slice(1)
     const addAnd = (" and " + altNamesList.pop())
     let altNamesString = (altNamesList.join(", ") + addAnd)
 
-    //Evaluates the number of alternate CommonNames and creates a string based on the outcome:
-    //If there is only one CommonName, create a 'Call to Action'
-    //If there are multiple CommonName, display the comma separated list
     if (altNamesList.length === 0 ) {
        altNamesString = (distinctPlant.plantCommonNames[0] + " doesn't seem to have any other common names. Leave a comment if you know of one!")
     } else {

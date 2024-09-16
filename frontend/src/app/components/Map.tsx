@@ -10,12 +10,21 @@ type mapProps = {
     find: Find[]
 }
 
+
+
+/*
+This was a custom map component made using MapBox.
+
+I'm stuck because Marty helped me set new pin locations with the useState().
+It was working, but in an attempt to further manipulate that data, I've managed
+to break this entire system. This code is a rollback to that last stable version.
+ */
+
+
 export function Map (props: mapProps) {
 
     const {find} = props
-
     // const [points] = useState(find.map(find => ({lat: find.findLat, lng: find.findLng})))
-
     const [points] = useState([
         { lat: 35.332, lng: -106.652 },
         { lat: 35.339, lng: -106.656 },
@@ -38,7 +47,6 @@ export function Map (props: mapProps) {
             >
                 {points.map((point, index) => <Pin lat={point.lat} lng={point.lng} index={index} key={index}/>)}
             </Mapbox>
-
         </>
     )
 }

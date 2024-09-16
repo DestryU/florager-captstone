@@ -43,5 +43,5 @@ export function Pin(props: Props) {
                 </svg>
             </Marker>
         </>
-            )
+    )
 }
