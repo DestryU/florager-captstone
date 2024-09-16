@@ -7,7 +7,7 @@ import {Find} from "@/utils/actions/find/find.validator";
 import {Modal} from "flowbite-react";
 
 type mapProps = {
-    find: Find[]
+    finds: Find[]
 }
 
 
@@ -23,15 +23,7 @@ to break this entire system. This code is a rollback to that last stable version
 
 export function Map (props: mapProps) {
 
-    const {find} = props
-    // const [points] = useState(find.map(find => ({lat: find.findLat, lng: find.findLng})))
-    const [points] = useState([
-        { lat: 35.332, lng: -106.652 },
-        { lat: 35.339, lng: -106.656 },
-        { lat: 35.40, lng: -106.666 },
-        { lat: 35.23, lng: -106.4444 },
-        { lat: 35, lng: -106.25 }
-    ])
+    const {finds} = props
 
     return (
         <>
@@ -45,7 +37,7 @@ export function Map (props: mapProps) {
                 style={{width: 1920, height: 750}}
                 mapStyle="mapbox://styles/mapbox/outdoors-v12"
             >
-                {points.map((point, index) => <Pin lat={point.lat} lng={point.lng} index={index} key={index}/>)}
+                {finds.map(find => <Pin find={find}/>)}
             </Mapbox>
         </>
     )

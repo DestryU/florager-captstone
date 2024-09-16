@@ -7,34 +7,55 @@ import {MapDrawer} from "@/app/components/MapDrawer";
 import DistinctFindCard from "@/app/components/FindCard";
 import RecentFinds from "@/app/components/RecentFinds";
 import PersonalFinds from "@/app/components/PersonalFinds";
+import {fetchPlantById} from "@/utils/actions/plant/plant.action";
+import {getProfileByProfileId} from "@/utils/actions/profile/profile.action";
 
 
 export default async function Home() {
 
     const recentFinds = await fetchFindRecent()
+    const plantIds = recentFinds.map(i => i.findPlantId)
+    const profileIds = recentFinds.map(i => i.findProfileId)
 
-    const loggedInUser = await getSession()
+    const recentPlants = []
+    for (let i of plantIds) {
+        recentPlants.push(await fetchPlantById(i))
+    }
 
-    const temp = await fetchFindRecent()
-    // console.log(temp)
+    // const recentProfiles = []
+    // for (let i of profileIds) {
+    //     recentProfiles.push(await getProfileByProfileId(i))
+    // }
+
+    const recentPlantNames = recentPlants.map(i => i.plantCommonNames[0])
+    // const recentProfileNames = recentProfiles.map(i => i.profileUserName)
+
+    for (let i = recentPlants.length; i >= 0; i--) {
+        console.log(recentPlantNames[i] + " was found by ")
+    }
+
+
+
+    // const uniquePlantIds = [...new Set(plantIds)]
+
 
 
     /*
-    This is the main page for the Map.
+    You have no idea how badly I want to do this:
 
-    I'm stuck because in the process of nesting modals, canvases, and other
-    layered elements I no longer understand how to orient HTML elements on the
-    page using Tailwind. I want to have several elements appearing over the Map,
-    and I don't know how to do that.
+    plantIds.map(await fetchPlantById())
+
+    But I can't. Why can't I, or more specifically, how do I something similar
+    that doesn't yell at me for trying to do it?
      */
 
     return (
         <>
-            <Map find={recentFinds}/>
-            <DistinctFindCard findId={"8887bfbb-913f-4e1d-8779-7ce1fb4e06ed"}/>
-            <MapDrawer/>
-            <RecentFinds/>
-            <PersonalFinds/>
+            <Map finds={recentFinds}/>
+            {/*<DistinctFindCard findId={"8887bfbb-913f-4e1d-8779-7ce1fb4e06ed"}/>*/}
+            {/*<MapDrawer/>*/}
+            {/*<RecentFinds/>*/}
+            {/*<PersonalFinds/>*/}
         </>
     )
 }

@@ -1,22 +1,21 @@
-import {Marker} from "react-map-gl";
-import {fetchFindRecent} from "@/utils/actions/find/find.action";
+import {Marker, Popup} from "react-map-gl";
+import {Find} from "@/utils/actions/find/find.validator";
+import DistinctFindCard from "@/app/components/FindCard";
+import {useState} from "react";
 
 
 
 
 
 type Props = {
-    lat: number,
-    lng: number,
-    index: number
+    find: Find
 }
 
 export function Pin(props: Props) {
-    const {lat, lng, index} = props
+    const {find} = props
+    const {findLat, findLng, findId} = find
+    const [showPopup, setShowPopup] = useState(false)
 
-    const find = fetchFindRecent()
-    console.log(find)
-    console.log("This is it!!")
 
 
 
@@ -28,7 +27,28 @@ export function Pin(props: Props) {
 
     return(
         <>
-            <Marker key={`marker-${index}`} longitude={lng} latitude={lat}>
+            {/*<DistinctFindCard findId={"8887bfbb-913f-4e1d-8779-7ce1fb4e06ed"}/>*/}
+
+            {showPopup === true? <Popup
+                anchor="top"
+                longitude={findLng}
+                latitude={findLat}
+                onClose={() => setShowPopup(false)}
+            >
+                <div>
+                    find.{find.findPlantId}
+                </div>
+
+
+
+            </Popup>: <></>}
+
+            <Marker onClick={(e) => {
+
+
+                e.originalEvent.stopPropagation()
+                setShowPopup(true)
+            }} key={`marker-${findId}`} longitude={findLng} latitude={findLat}>
                 <svg
                     height={SIZE}
                     viewBox="0 0 24 24"
