@@ -33,6 +33,7 @@ export const PlantSchema = z.object({
 
 })
 
+
 export type Plant = z.infer<typeof PlantSchema>
 
 export async function insertPlant(plant: Plant): Promise<string> {
