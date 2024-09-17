@@ -6,6 +6,7 @@ import {getProfileByProfileId} from "@/utils/actions/profile/profile.action";
 import {fetchAllComments, fetchCommentsByProfileId} from "@/utils/actions/comments/comment.action";
 import {Comment} from "@/utils/actions/comments/comment.action";
 import React from "react";
+import DistinctFindCard from "@/app/components/FindCard";
 
 export default async function CommentsPage() {
     const loggedInUser = await getSession()
@@ -20,17 +21,19 @@ export default async function CommentsPage() {
 
     return (
         <>
-            <main>
-            <div className={"grid sm:grid-cols-1 px-20 gap-5"}>
-                <div className={"p-10 mx-auto"}>
-                <h1 className={"text-xl text-green-700 font-bold"}>View Your Comments Here</h1>
+            <section className={"flex flex-wrap justify-center items-center w-full"}>
+                <DistinctFindCard findId={"b470c3b1-8237-4e0e-bb19-3111971921f2"}/>
+
+                <div className={"bg-red rounded-lg items-center h-auto w-[500px] m-12"}>
+                    <h1 className={"text-xl text-green-700 font-bold"}>Leave a comment about this Foliage Find!</h1>
+                    {/*<CommentForm session={loggedInUser} profile={profile}/>*/}
                 </div>
-                <div className={"bg-white rounded-lg items-center"}>
-                    <CommentForm session={loggedInUser} profile={profile} />
-                </div>
-            </div>
-                {comments.map((comment: Comment) => <CommentCard comment={comment} key={comment.commentId} />)}
-            </main>
+            </section>
+
+            <section className={"h-full mx-auto px-16"}>
+                {comments.map((comment: Comment) => <CommentCard comment={comment} key={comment.commentId}/>)}
+            </section>
         </>
-    )}
+    )
+}
 
