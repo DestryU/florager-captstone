@@ -38,16 +38,20 @@ export default function Home() {
                 <SignUpPage/>
             </div>
             <div className={"container mx-auto grid grid-cols-1 md:grid-cols-2"} id={"#explore-home"}>
-            <div className={"flex flex-col"}>
-                <h2 className={"text-green-700 font-black text-3xl md:text-5xl md:text-left ml-10"}>Explore New Mexico Plants</h2>
-                <h3 className={"mt-4 mb-4 text-3xl font-thin md:text-left ml-10"}>Anyone can search our database of New Mexico plants.</h3>
-                <SearchPlants/>
-            </div>
+                <div className={"flex flex-col"}>
+                    <h2 className={"text-green-700 font-black text-3xl md:text-5xl md:text-left ml-10"}>Explore New
+                        Mexico Plants</h2>
+                    <h3 className={"mt-4 mb-4 text-3xl font-thin md:text-left ml-10"}>Anyone can search our database of
+                        New Mexico plants.</h3>
+                    <h3 className={"mb-4 text-3xl font-thin text-center mt-[-10]"}>Registered users can collect favorites on their profile.</h3>
+
+                    <SearchPlants/>
+                </div>
             </div>
 
-                 <h2 className={"mx-auto text-center text-green-700 font-black text-5xl"}>Share New Mexico Plants</h2>
+            <h2 className={"mx-auto text-center text-green-700 font-black text-5xl"}>Share New Mexico Plants</h2>
 
-                 <h3 className={"mt-4 mb-4 text-3xl font-thin text-center"}>Registered users can share plant finds and
+            <h3 className={"mt-4 mb-4 text-3xl font-thin text-center"}>Registered users can share plant finds and
                 comments on our interactive map.</h3>
             <InteractiveMap/>
         </>
