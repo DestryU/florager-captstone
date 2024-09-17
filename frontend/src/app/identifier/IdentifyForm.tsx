@@ -6,120 +6,86 @@ import {z} from "zod";
 import {useRouter} from "next/navigation";
 import {DisplayStatus} from "@/app/components/DisplayStatus";
 import {FormDebugger} from "@/app/components/FormDebugger";
-import React, {useCallback} from 'react'
-import {DisplayUploadErrorProps, ImageUploadDropZone} from "@/app/navigation/ImageUploadDropZone";
-import {Find, FindSchema} from "@/utils/actions/find/find.validator";
+import React, {useCallback, useState} from 'react'
+import {DisplayUploadErrorProps, ImageUploadDropZonePlantnet} from "@/app/components/ImageUploadDropzonePlantnet";
+import {IdentifiedPlants} from "@/app/identifier/IdentifiedPlants";
+
 
 type Props = {
     authorization: string | undefined,
-    find: Find
+    result: object[]
+    apiKey: string
+
 }
 
 
-const FormSchema = FindSchema
-    .pick({
-        findImageUrl: z
-            .any()
-            .optional()
-    })
+const FormSchema = z.object({
+    identifyImage: z.any() .optional()
+})
+
 
 type FormValues = z.infer<typeof FormSchema>
 
 
-export function FindForm(props: Props) {
-    const {authorization, find} = props
+export function IdentifyForm(props: Props) {
+    const {authorization, result, apiKey} = props
 
     const router = useRouter()
-    //
-    const [selectedImage, setSelectedImage] = React.useState<string | null>(props.find.findProfileId || null);
+    const [selectedImage, setSelectedImage] = useState<string | null>( null);
+    const [identifyResults, setIdentifyResults] = useState<[] | null>(null)
 
     if (authorization === undefined) {
         return <></>
     }
 
     function handleSubmit(values: FormValues, actions: FormikHelpers<FormValues>) {
-        // values.findImageUrl = selectedImage
+        console.log('help')
         const {setStatus, resetForm} = actions
 
-        function submitFind(find: Find) {
-            fetch(`/apis/profile/${find.findId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': authorization ?? "",
-                },
-                body: JSON.stringify(find)
-            }).then(
-                (response: Response) => {
-                    if (response.ok) {
-                        return response.json()
-                    }
-                    throw new Error('Network response was not ok.')
-                }).then((json) => {
-                let type = 'failure'
-                if (json.status === 200) {
-                    resetForm()
-                    type = 'success'
-                    if(find.findProfileId !== values.findProfileId) {
-                        setTimeout(() => {
-                                router.refresh()
-                                router.push(`/find/${values.findProfileId}`)
-                            }
-                        )
-                    } else {
-                        router.refresh()
-                    }
-                }
-                setStatus({type, message: json.message})
-            })
-        }
+                fetch(`/v2/identify/all?include-related-images=false&no-reject=false&nb-results=3&lang=en&api-key=${apiKey}`,
+                {
+                    method: "POST",
+                    cache: "no-cache",
+                    headers: {
+                       // 'Content-Type': 'multipart/form-data',
+                        'accept': 'application/json',
+                    },
+                    body: values.identifyImage
 
-        function uploadImage(findImageUrl: any) {
-            console.log('This is the upload function')
-            fetch("/apis/image/", {
-                method: "POST",
-                headers: {
-                    'Authorization': authorization ?? ""
-                },
-                body: findImageUrl
-
-            })
+                })
                 .then(response => response.json())
                 .then(json => {
-                    if (json.status !== 200) {
-                        setStatus({type: 'failure', message: json.message})
-                    } else {
-                        console.log('Image URL saved:', json.message);
-                        find.findImageUrl = json.message
-                        console.log(find)
-                        submitFind(find)
-                    }
+                    // setIdentifyResults(json?.results.map((result: any) => result.species.scientificNameWithoutAuthor))
+                    console.log(json?.results)
+                    console.log(json.results.map((result: any) => result.species.scientificNameWithoutAuthor))
                 })
-        }
+
+
     }
 
     return (
+        <>
         <Formik
             initialValues={
-                {findId: props.find.findId,
-                    findProfileId: props.find.findProfileId,
-                    findPlantId: props.find.findPlantId,
-                    findImageUrl: props.find.findImageUrl,
-                    findLat: props.find.findLat,
-                    findLng: props.find.findLng,
-                    findDateTime: props.find.findDateTime}}
+                {
+                    identifyImage: '',
+                  }}
 
             onSubmit={handleSubmit}
             validationSchema={toFormikValidationSchema(FormSchema)}
             setSelectedImage={setSelectedImage}
         >
-            {FindFormContent}
+            {IdentifyFormContent}
         </Formik>
+            {identifyResults &&
+            <IdentifiedPlants plantScientificNames={identifyResults} />
+            }
+        </>
     )
 }
 
 
-export function FindFormContent(props: FormikProps<FormValues>) {
+export function IdentifyFormContent(props: FormikProps<FormValues>) {
     const {
         status,
         values,
@@ -144,27 +110,28 @@ export function FindFormContent(props: FormikProps<FormValues>) {
                 <form onSubmit={handleSubmit} className="flex min-h-auto gap-4 min-w-full flex-col grow">
                     <h1 className="text-3xl font-bold text-green-700 mb-10">Plant Identifier</h1>
 
-                    <ImageUploadDropZone
+                    <ImageUploadDropZonePlantnet
                         formikProps={{
+
                             setFieldError,
                             setFieldTouched,
                             handleBlur,
                             handleChange,
                             setFieldValue,
-                            fieldValue: 'findImageUrl'
+                            fieldValue: 'identifyImage'
                         }}
                         setSelectedImage={setSelectedImage}
                     />
 
                     {selectedImage && <img src={selectedImage} alt="identify image" className="mt-4"/>}
-                    <DisplayUploadErrorProps errors={errors} field={'findImageUrl'}/>
+                    <DisplayUploadErrorProps errors={errors} field={'identifyImage'}/>
                     <div className={"flex mt-10"}>
                         <Button className={"mr-1"} color={"green"} type="submit"> Identify My Plant</Button>
                         <Button className={'ml-1'} color={"green"} type="reset"> Reset</Button>
                     </div>
                 </form>
                 <DisplayStatus status={status}/>
-                <FormDebugger {...props} />
+           {/*     <FormDebugger {...props} />*/}
             </div>
 
         </>

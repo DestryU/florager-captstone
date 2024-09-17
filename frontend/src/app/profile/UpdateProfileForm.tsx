@@ -33,9 +33,6 @@ type FormValues = z.infer<typeof FormSchema>
 export function UpdateProfileForm(props: Props) {
     const {authorization, profile} = props
 
-    //
-    //const handleSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>) => {
-//
     const router = useRouter()
     //
     const [selectedImage, setSelectedImage] = React.useState<string | null>(props.profile.profileImageUrl || null);

@@ -6,10 +6,16 @@ const nextConfig = {
             {
                 source: '/apis/:path*',
                 destination: `${process.env.REST_API_URL}/apis/:path*`
+            },
+            {
+                source: '/v2/:path*',
+                destination: 'https://my-api.plantnet.org/v2/:path*'
+
             }
+
         ]
 
-    },
+    }
 }
 
 

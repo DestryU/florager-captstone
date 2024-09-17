@@ -24,7 +24,7 @@ export function Navigation (props: NavProps)
                                 <Navbar.Link href="#" active></Navbar.Link>
                                 <div className={"flex flex-wrap gap-4 text-3xl text-green-700 hover:text-green-400 font-black bg-transparent"}>
                                     <Dropdown label="Identify" inline>
-                                        <Dropdown.Item><Navbar.Link href="/identifier">Identify Plants</Navbar.Link></Dropdown.Item>
+                                        <Dropdown.Item>{loggedInProfile ? <Navbar.Link href="/identifier">Identify Plants</Navbar.Link> : 'Please Sign In'}</Dropdown.Item>
                                     </Dropdown>
 
                                     <Dropdown label="Explore" inline>
