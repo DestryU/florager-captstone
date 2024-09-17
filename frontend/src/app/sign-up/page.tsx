@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 
-export default function () {
+export default function signUpPage() {
 
     return (
         <>
@@ -10,27 +10,27 @@ export default function () {
                      alt={"four people foraging"}/>
                 <div className={"flex flex-col"}>
 
-                    <h3 className={"text-green-700 md:text-6xl text-3xl font-black text-center mt-auto pt-32"}>Benefits
+                    <h3 className={"text-green-700 md:text-8xl text-5xl font-black text-center mt-auto pt-32"}>Benefits
                         of
                         a</h3>
                     <h1 className={"text-green-700 med:text-left md:text-8xl text-5xl font-black text-center md:mt-auto"}>Free
                         Profile</h1>
-                    <p className={"sm:text-center text-2xl pt-7 pl-8 md:mt-auto"}>
-                        The New Mexico Floragers website is more fun with a free profile!</p>
-                    <p className={"sm:text-center text-2xl pl-8 pt-2"}>Enrich your experience with
-                        these features:</p>
-                    <ul className={"sell-it sm:text-base sm:text-center med:text-left md:text-2xl text-italic font-bold pl-8 pt-4 pb-8 md:mt-auto"}>
-                        <li><em>Use the PlanetNet plant identification tool</em></li>
-                        <li><em>Collect your plant finds on your profile</em></li>
-                        <li><em>Comment each other's plant finds</em></li>
-                        <li><em>Share your plant finds on our interactive map</em></li>
+                    <p className={"sm:text-center font-thin text-3xl pt-7 pl-8 md:mt-auto"}>
+                        Welcome to New Mexico Floragers!</p>
+                    <p className={"sm:text-center font-thin text-3xl pt-7 pl-8 mt-[-20]"}>Registered users can:</p>
+
+                    <ul className={"sell-it text-xl text-center med:text-left md:text-3xl text-italic font-bold pl-8 pt-4 pb-8 md:mt-auto"}>
+                        <li><em>IDENTIFY plants you find using PlantNet</em></li>
+                        <li><em>EXPLORE plant finds and comments from our community</em></li>
+                        <li><em>SHARE your own plant finds and comments on our map</em></li>
+
                     </ul>
-                    <button type="button" color="success" className="self-center h-20 w-80 mt-2 md:mt-auto px-8 py-6 text-3xl text-white bg-green-700
-                    hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-400 rounded-lg text-center
-                    dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><Link href={"/sign-up/create-profile"}>CREATE PROFILE</Link></button>
+                    <button type="button" className="self-center h-20 w-80 mt-2 md:mt-auto px-8 py-6 text-3xl text-white hover:text-gray-300 bg-green-700
+                    focus:ring-4 focus:outline-none focus:ring-green-400 rounded-lg text-center
+                    dark:bg-green-400 dark:focus:ring-green-800"><Link href={"/sign-up/create-profile"}>CREATE
+                        PROFILE</Link></button>
                 </div>
             </div>
         </>
     )
 }
-

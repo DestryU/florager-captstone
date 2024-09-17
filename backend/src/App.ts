@@ -1,6 +1,5 @@
 import express, { Application } from 'express'
 import morgan from 'morgan'
-// Routes
 import { indexRoute } from './apis/index.route'
 import session from 'express-session'
 import { createClient,  RedisClientType } from 'redis'
@@ -13,6 +12,7 @@ import {plantRoute} from "./apis/plant/plant.route";
 import {findRoute} from "./apis/find/find.route";
 import {imageRoute} from "./apis/image/image.route";
 import {signOutRoute} from "./apis/sign-out/sign-out.route";
+
 
 // The following class creates the app and instantiates the server
 export class App {

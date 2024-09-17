@@ -5,6 +5,7 @@ import {SignInModal} from "@/app/components/SignInModal";
 import Link from "next/link";
 import {Profile} from "@/utils/actions/profile/profile.validator";
 import {SignOutButton} from "@/app/components/SignOutButton";
+import React from "react";
 type NavProps = {
     loggedInProfile: Profile | null
 }
@@ -14,37 +15,44 @@ export function Navigation (props: NavProps)
     console.log(loggedInProfile)
         return (
                 <>
-                   <Navbar fluid rounded>
-                      <Link href={"/"}> <img src="/nmf-logo.png" className="mr-3 h-20 sm:h-20" alt="NM Floragers logo"/></Link>
-                        <span className="self-center whitespace-nowrap bg-transparent text-3xl font-black text-green-700 dark:text-white">New Mexico Floragers</span>
-                         <div className="flex md:order-2">
-                            <Navbar.Toggle />
-                         </div>
-                            <Navbar.Collapse>
-                                <Navbar.Link href="#" active></Navbar.Link>
-                                <div className={"flex flex-wrap gap-4 text-3xl text-green-700 hover:text-green-400 font-black bg-transparent"}>
-                                    <Dropdown label="Identify" inline>
-                                        <Dropdown.Item><Navbar.Link href="/identifier">Identify Plants</Navbar.Link></Dropdown.Item>
-                                    </Dropdown>
+                    <Navbar fluid rounded>
+                        <Link href={"/"}> <img src="/nmf-logo.png" className="mr-3 h-20 sm:h-20"
+                                               alt="NM Floragers logo"/></Link>
+                        <span
+                            className="self-center whitespace-nowrap bg-transparent text-3xl font-black text-green-700 dark:text-white">New Mexico Floragers</span>
 
-                                    <Dropdown label="Explore" inline>
-                                        <Dropdown.Item>Explore Plants</Dropdown.Item>
-                                        <Dropdown.Item><Navbar.Link href="/interactive-map">Explore Map</Navbar.Link></Dropdown.Item>
-                                    </Dropdown>
+                        <div className="flex md:order-2">
+                            <Navbar.Toggle/>
+                        </div>
+                        <Navbar.Collapse>
+                            <Navbar.Link href="#" active></Navbar.Link>
+                            <div
+                                className={"flex flex-wrap gap-4 text-3xl text-green-700 hover:text-gray-500 font-black bg-transparent"}>
+                                <Dropdown label="Identify" inline>
+                                    <Dropdown.Item><Navbar.Link href="/identifier">Identify
+                                        Plants</Navbar.Link></Dropdown.Item>
+                                </Dropdown>
 
-                                    <Dropdown label="Share" inline>
-                                        <Dropdown.Item> <Navbar.Link href="/sign-up">Sign Up</Navbar.Link></Dropdown.Item>
-                                    </Dropdown>
-                                    {loggedInProfile ?
-                                        <><SignOutButton/>  <Link href={"/profile"}><Button className={"bg-green-700"}>Profile</Button></Link></>
-                                        : <SignInModal/>}
+                                <Dropdown label="Explore" inline>
+                                    <Dropdown.Item>Explore Plants</Dropdown.Item>
+                                    <Dropdown.Item><Navbar.Link href="/interactive-map">Explore
+                                        Map</Navbar.Link></Dropdown.Item>
+                                </Dropdown>
 
-                                </div>
+                                <Dropdown label="Share" inline>
+                                    <Dropdown.Item> <Navbar.Link href="/sign-up">Sign Up</Navbar.Link></Dropdown.Item>
+                                </Dropdown>
+                                {loggedInProfile ?
+                                    <><SignOutButton/> <Link href={"/profile"}><Button
+                                        className={"bg-green-700"}>Profile</Button></Link></>
+                                    : <SignInModal/>}
 
-                            </Navbar.Collapse>
-                  </Navbar>
+                            </div>
+
+                        </Navbar.Collapse>
+                    </Navbar>
                 </>
-               )
+        )
 }
 
 
