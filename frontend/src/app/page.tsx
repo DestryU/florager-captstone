@@ -2,7 +2,7 @@
 
 import{MainCarousel} from "@/app/components/MainCarousel";
 import React from "react";
-import {PlantCard} from "@/app/plant-cards/PlantCard";
+//import {PlantCard} from "@/app/plant-cards/PlantCard";
 
 
 
