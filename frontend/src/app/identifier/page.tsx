@@ -25,7 +25,7 @@ export default async function IdentifyPage() {
                 <h2 className={"mx-auto mt-10 font-bold text-4xl text-green-700 text-center py-5"}>Welcome to the Plant
                     Identifier!</h2>
                 <h2 className={"mx-auto mt-10 font-bold text-4xl text-green-700 text-center py-5"}>Upload a .jpg or .png
-                    Image File Below</h2>
+                    image file below</h2>
 
                 <div className={"mx-auto ml-24 flex flex-wrap justify-center mb-20"}>
                     <IdentifyForm apiKey={apiKey} result={result} authorization={loggedInUser.authorization}/>
