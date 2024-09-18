@@ -51,15 +51,13 @@ function PlantCard({ plant }: PlantCardProps) {
                     <p><strong>Scientific Name: </strong>{plant.plantScientificName}</p>
                 </p>
 
-                    <p><strong>Common Names: </strong>{plant.plantCommonNames && plant.plantCommonNames.map((commonName, index) => (
+                    <h4><strong>Common Names: </strong>{plant.plantCommonNames && plant.plantCommonNames.map((commonName, index) => (
                         <p key={index} className="text-lg text-gray-700 dark:text-gray-400">
                             {commonName}
                         </p>
-                    ))}</p>
+                    ))}</h4>
                         <p className="text-lg text-gray-900 dark:text-gray-400">
                     <p><strong>Reference URL: </strong> <Link target="_blank" href={plant.plantReferenceUrl}> {plant.plantReferenceUrl}</Link></p>
-
-
                 </p>
                 </div>
             </div>
