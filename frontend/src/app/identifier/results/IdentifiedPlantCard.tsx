@@ -63,17 +63,19 @@ useEffect(()=> {
 
     return (
         <>
-        <div className={"grid sm:grid-cols-1 md:grid-cols-3 px-20 gap-5 content-center mb-20"}>
-            <h3 className={"font-bold text-green-700 mt-10"}>Your Identified Plant Card</h3>
-            <img src={plant.plantImageUrl} alt="identified plant" />
-            <div className={"font-bold text-green-700"}>
+        <div className={"grid sm:grid-cols-1 md:grid-cols-1 px-20 gap-5 content-center mb-20"}>
+            <h1 className={"p-5 mx-auto font-bold text-green-700 mt-10 text-xl border-4 border-green-700 bg-white rounded-lg"}>Here Are Your Identified Plants!</h1>
+            <img src={plant.plantImageUrl} alt="identified plant" className={"mx-auto max-w-md"} />
+            <div className={"p-5 mx-auto font-bold text-green-700"}>
                 {plant.plantScientificName}
             </div>
-            <div className={"font-bold text-green-700"}>
-                {plant.plantImageUrl}
+            {/*<div className={"p-5 mx-auto font-bold text-green-700"}>*/}
+            {/*    {plant.plantImageUrl}*/}
+            {/*</div>*/}
+            <div className={"mx-auto font-bold text-green-700"}>
+            {location.lat} {location.lng}
             </div>
-            {location.lat}
-            <Button onClick={handlePlantFound} type={"button"} className={"bg-green-700"} >I FOUND THIS PLANT!</Button>
+            <Button onClick={handlePlantFound} type={"button"} className={"p-5 mx-80 bg-green-700 font-bold items-center hover:bg-green-200"} >ADD THIS PLANT TO MY FINDS!</Button>
         </div>
         </>
     )
