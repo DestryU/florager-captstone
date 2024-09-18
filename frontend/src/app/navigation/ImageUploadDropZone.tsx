@@ -64,6 +64,7 @@ export function ImageUploadDropZone(props: Props) {
 
 
     }, [formikProps, setSelectedImage])
+
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
     return (
@@ -82,10 +83,11 @@ export function ImageUploadDropZone(props: Props) {
                 {...getInputProps()}
             />
             {
-                isDragActive ?
-                    <span className="align-items-center text-green-700">Drop image here</span> :
+                isDragActive ? (
+                    <span className="align-items-center text-green-700">Drop image here</span>
+                    ) : (
                     <span className="align-items-center text-lg text-green-700 font-bold">Drag and drop image HERE or CLICK HERE to select an image.</span>
-            }
+                ) }
         </div>
 
 
