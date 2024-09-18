@@ -17,12 +17,12 @@ export default function Home() {
                         <button
                             className={"flex flex-col justify-around identify-background bg-no-repeat bg-cover bg-center size-44 rounded-full text-center m-[3rem] border-solid border-b-cyan-400 border-4"}>
 
-                            <p className={"hover:text-cyan-400 text-white text-3xl md:text-center"}>< a href="/app/identifier/"> Identify NM </a>
+                            <p className={"hover:text-cyan-400 text-white text-3xl md:text-center"}>Identify NM
                                 Plants</p>
                         </button>
                         <button
                             className={"flex flex-col justify-around identify-background bg-no-repeat bg-cover bg-center h-44 w-44 rounded-full text-center m-[3rem] border-solid border-b-cyan-400 border-4"}>
-                            <p className={"hover:text-cyan-400 text-white text-3xl inline-block align-middle"}>Explore href="/app/interactive-map">
+                            <p className={"hover:text-cyan-400 text-white text-3xl inline-block align-middle"}>Explore
                                 NM Plants</p>
                         </button>
                         <button

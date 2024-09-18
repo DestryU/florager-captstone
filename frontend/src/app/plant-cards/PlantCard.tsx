@@ -47,9 +47,9 @@ function PlantCard({ plant }: PlantCardProps) {
             )}
             <div className="p-4 flex flex-col justify-between">
                 <div className="flex-grow">
-                <p className="text-lg text-gray-900 dark:text-gray-400">
+                <h4 className="text-lg text-gray-900 dark:text-gray-400">
                     <p><strong>Scientific Name: </strong>{plant.plantScientificName}</p>
-                </p>
+                </h4>
 
                     <h4><strong>Common Names: </strong>{plant.plantCommonNames && plant.plantCommonNames.map((commonName, index) => (
                         <p key={index} className="text-lg text-gray-700 dark:text-gray-400">
