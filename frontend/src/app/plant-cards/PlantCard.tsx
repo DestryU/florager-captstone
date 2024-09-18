@@ -29,6 +29,7 @@
 import React from 'react';
 import { Card } from 'flowbite-react';
 import { Plant } from '@/utils/actions/plant/plant.validator';
+import Link from "next/link";
 type PlantCardProps = {
     plant: Plant
 };
@@ -56,7 +57,9 @@ function PlantCard({ plant }: PlantCardProps) {
                         </p>
                     ))}</p>
                         <p className="text-lg text-gray-900 dark:text-gray-400">
-                    <p><strong>Reference URL: </strong>{plant.plantReferenceUrl}</p>
+                    <p><strong>Reference URL: </strong> <Link target="_blank" href={plant.plantReferenceUrl}> {plant.plantReferenceUrl}</Link></p>
+
+
                 </p>
                 </div>
             </div>
