@@ -4,8 +4,9 @@ import React from "react";
 import { Card } from "flowbite-react";
 
 import {fetchFindId, fetchFindRecent} from "@/utils/actions/find/find.action";
-import {fetchPlantById} from "@/utils/actions/plant/plant.action";
+
 import {getProfileByProfileId} from "@/utils/actions/profile/profile.action";
+import {fetchPlantById} from "@/utils/actions/plant/plant.model";
 
 
 type Props = {
