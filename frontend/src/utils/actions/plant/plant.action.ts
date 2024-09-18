@@ -23,6 +23,8 @@ export async function fetchAllPlants() : Promise<Plant[]> {
     return PlantSchema.array().parse(data)
 }
 
+
+
 export async function fetchPlantById(plantId: string) : Promise<Plant> {
     const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/plant/${plantId}`, {
         method: "get",

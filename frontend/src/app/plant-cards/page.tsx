@@ -1,4 +1,4 @@
-import {fetchAllPlants} from "@/utils/actions/plant/plant.model";
+import {fetchAllPlants} from "@/utils/actions/plant/plant.action";
 import {PlantList} from "@/app/plant-cards/PlantList";
 import React from "react";
 

@@ -25,4 +25,4 @@ router.route('/plantScientificName/:plantScientificName')
 
 export const plantRoute = {
     router, basePath
-}
+    }

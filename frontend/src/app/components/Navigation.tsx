@@ -28,7 +28,7 @@ export function Navigation (props: NavProps)
                                     </Dropdown>
 
                                     <Dropdown label="Explore" inline>
-                                        <Dropdown.Item>Explore Plants</Dropdown.Item>
+                                        <Dropdown.Item><Navbar.Link href="/plant-cards">Explore Plants</Navbar.Link></Dropdown.Item>
                                         <Dropdown.Item><Navbar.Link href="/interactive-map">Explore Map</Navbar.Link></Dropdown.Item>
                                     </Dropdown>
 

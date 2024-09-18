@@ -1,34 +1,25 @@
 'use server'
+
 import React from "react";
 
 import { Card } from "flowbite-react";
 
-import {fetchFindId, fetchFindRecent} from "@/utils/actions/find/find.action";
-import {fetchPlantById} from "@/utils/actions/plant/plant.action";
+import {fetchFindId} from "@/utils/actions/find/find.action";
 import {getProfileByProfileId} from "@/utils/actions/profile/profile.action";
+import {fetchPlantById} from "@/utils/actions/plant/plant.action";
+
 
 
 type Props = {
     findId: string,
 }
 
-/*
-This component creates a plant card based off the Flowbite 'Card' template.
-It takes a single Find ID as a prop, and returns all relevant information based on that find.
-
-I'm stuck because I want to call this component as a modal whenever a map pin is
-clicked, and I don't know how to do that.
- */
 export default async function DistinctFindCard(findId: Props) {
 
     const distinctFind = await fetchFindId(findId.findId)
     const distinctPlant = await fetchPlantById(`${distinctFind.findPlantId}`)
     const distinctUser = await getProfileByProfileId(`${distinctFind.findProfileId}`)
 
-    /*
-    This chunk of code handles multiple common names for plants, as well as what to
-    do if a plant has only one common name. The majority of the code is the styling.
-     */
     const altNamesList = distinctPlant.plantCommonNames.slice(1)
     const addAnd = (" and " + altNamesList.pop())
     let altNamesString = (altNamesList.join(", ") + addAnd)
@@ -41,7 +32,7 @@ export default async function DistinctFindCard(findId: Props) {
 
 
     return (
-        <Card className="max-w-md bg-cyan-50" imgSrc={distinctPlant.plantImageUrl?.toString()} horizontal>
+        <Card className="max-w-md bg-green-100" imgSrc={distinctPlant.plantImageUrl?.toString()} horizontal>
             <div className={"flex-col pb-[.5rem]"}>
                 <h4 className={"text-[2.5rem] font-[700] text-green-700"}>
                     {distinctPlant.plantCommonNames[0]}

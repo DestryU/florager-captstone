@@ -31,8 +31,8 @@ create table if not exists find
   find_profile_id uuid references profile(profile_id) NOT NULL,
   find_plant_id uuid references plant(plant_id) NOT NULL,
   find_image_url varchar (128) NOT NULL,
-  find_lat float NOT NULL,
-  find_lng float NOT NULL,
+  find_lat decimal (9, 7) NOT NULL,
+  find_lng decimal (10, 7) NOT NULL,
   find_date_time timestamptz NOT NULL
 );
 

@@ -1,7 +1,8 @@
-import {fetchPlantByScientificName} from "@/utils/actions/plant/plant.model";
+
 import {IdentifiedPlantCard} from "@/app/identifier/results/IdentifiedPlantCard";
 import {getSession} from "@/utils/session.utils";
 import {redirect} from "next/navigation";
+import {fetchPlantByScientificName} from "@/utils/actions/plant/plant.action";
 
 
 type PageProps = {
