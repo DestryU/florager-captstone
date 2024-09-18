@@ -7,22 +7,31 @@ import {Find} from "@/utils/actions/find/find.validator";
 import {Modal} from "flowbite-react";
 
 type mapProps = {
-    finds: Find[]
+    find: Find[]
 }
+
+
+
+/*
+This was a custom map component made using MapBox.
+
+I'm stuck because Marty helped me set new pin locations with the useState().
+It was working, but in an attempt to further manipulate that data, I've managed
+to break this entire system. This code is a rollback to that last stable version.
+ */
+
 
 export function Map (props: mapProps) {
 
-    const {finds} = props
-
-    const [points] = useState(finds.map(find => ({lat: find.findLat, lng: find.findLng})))
-
-    // const [points] = useState([
-    //     { lat: 35.332, lng: -106.652 },
-    //     { lat: 35.339, lng: -106.656 },
-    //     { lat: 35.40, lng: -106.666 },
-    //     { lat: 35.23, lng: -106.4444 },
-    //     { lat: 35, lng: -106.25 }
-    // ])
+    const {find} = props
+    // const [points] = useState(find.map(find => ({lat: find.findLat, lng: find.findLng})))
+    const [points] = useState([
+        { lat: 35.332, lng: -106.652 },
+        { lat: 35.339, lng: -106.656 },
+        { lat: 35.40, lng: -106.666 },
+        { lat: 35.23, lng: -106.4444 },
+        { lat: 35, lng: -106.25 }
+    ])
 
     return (
         <>
@@ -38,10 +47,6 @@ export function Map (props: mapProps) {
             >
                 {points.map((point, index) => <Pin lat={point.lat} lng={point.lng} index={index} key={index}/>)}
             </Mapbox>
-
-
-
-
         </>
     )
 }

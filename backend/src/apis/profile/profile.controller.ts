@@ -132,7 +132,7 @@ export async function putProfileController(request: Request, response: Response)
         const {profileId} = validationResultForRequestParams.data
 
         if (profileIdFromSession !== profileId) {
-            return response.json({status: 400, message: "you cannot update a profile-first-take that is not yours ahahahhahah", data: null})
+            return response.json({status: 400, message: "you cannot update a profile that is not yours", data: null})
         }
 
 
@@ -144,7 +144,7 @@ export async function putProfileController(request: Request, response: Response)
 
         //if the profile-first-take does not exist, return a preformatted response to the client
         if(profile === null) {
-            return response.json({status: 400, message: "profile-first-take does not exist", data: null})
+            return response.json({status: 400, message: "profile does not exist", data: null})
         }
 
 
@@ -152,11 +152,11 @@ export async function putProfileController(request: Request, response: Response)
         profile.profileUserName = profileUserName
         profile.profilePronouns = profilePronouns
 
-        //update the profile-first-take in the database
+        //update the profile in the database
         await updateProfile(profile)
 
         //return a response to the client with a success message
-        return response.json({status: 200, message: "profile-first-take successfully updated", data: null})
+        return response.json({status: 200, message: "profile successfully updated", data: null})
 
 
     } catch (error: unknown) {

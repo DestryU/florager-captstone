@@ -9,7 +9,7 @@ export function SignInModal() {
 
     return (
         <>
-            <Button className={"sign-in-button bg:green-700"} onClick={() => setOpenModal(true)}>Sign In</Button>
+            <Button className={"bg-green-700 hover:bg-green-500"} onClick={() => setOpenModal(true)}>Sign In</Button>
                 <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
                 <SignIn/>
             </Modal>
