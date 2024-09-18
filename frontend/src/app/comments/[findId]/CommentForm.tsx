@@ -105,7 +105,7 @@ export function CommentFormContent(props: FormikProps<Values>) {
                 </div>
             </form>
             <DisplayStatus status={status}/>
-            <FormDebugger {...props} />
+            {/*<FormDebugger {...props} />*/}
         </>
     )
 

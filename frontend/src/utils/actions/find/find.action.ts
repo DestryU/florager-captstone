@@ -54,6 +54,7 @@ export async function fetchFindProfileId(findProfileId: string) : Promise<Find[]
 export async function fetchFindRecent() : Promise<Find[]> {
     const {data} = await fetch(`${process.env.PUBLIC_API_URL}/apis/find/findRecent`, {
         method: "get",
+        next: {revalidate: 5},
         headers: {
             'Content-Type': 'application/json'
         }

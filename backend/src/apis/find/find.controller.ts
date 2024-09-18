@@ -128,6 +128,7 @@ export async function getFindByRecentController(request: Request, response:Respo
         return response.json({status:200, data, message: null})
 
     } catch (error) {
+        console.error(error)
         return response.json({status:500, data: null, message: null})
     }
 }

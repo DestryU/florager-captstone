@@ -20,15 +20,15 @@ export const FindSchema = z.object ({
         .url({message: 'Please provide a valid URL for findImageUrl'})
         .max(128, {message: "This image URL is too long"}),
 
-    findLat: z.string({
+    findLat: z.number({
         required_error: "This requires a findLat"})
-        .min(1, {message: 'optional'})
-        .max(10, {message: 'optional (max 10 characters)'}),
+        .min(-90, {message: 'Latitude must be greater than -90 Degs'})
+        .max(90, {message: 'Latitude must be less than 90 Degs'}),
 
-    findLng: z.string({
+    findLng: z.number({
         required_error: "This requires a findLng"})
-        .min(1, {message: 'optional'})
-        .max(10, {message: 'optional (max 10 characters)'}),
+        .min(-180, {message: 'Longitude must be greater than -180 Degs'})
+        .max(180, {message: 'Longitude must be less than 180 Degs'}),
 
     findDateTime: z.coerce.date({
         required_error: "This requires a findDateTime"})
