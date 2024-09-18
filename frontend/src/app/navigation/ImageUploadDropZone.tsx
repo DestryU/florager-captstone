@@ -48,7 +48,7 @@ export function ImageUploadDropZone(props: Props) {
 
         } else {
             const formData = new FormData()
-            formData.append('image', acceptedFiles[0])
+            formData.append('images', acceptedFiles[0])
 
             const fileReader = new FileReader()
             fileReader.readAsDataURL(acceptedFiles[0])

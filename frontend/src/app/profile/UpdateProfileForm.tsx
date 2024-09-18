@@ -225,7 +225,7 @@ export function EditProfileFormContent(props: FormikProps<FormValues>) {
                     </div>
                 </form>
                 <DisplayStatus status={status}/>
-                <FormDebugger {...props} />
+                {/*<FormDebugger {...props} />*/}
             </div>
 
         </>

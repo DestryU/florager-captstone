@@ -1,15 +1,16 @@
-'use server'
-import {IdentifiedPlantCard} from "@/app/identifier/IdentifiedPlantCard";
+
+import {IdentifiedPlantCard} from "@/app/identifier/results/IdentifiedPlantCard";
+import {Plant} from "@/utils/actions/plant/plant.validator";
 
 type IdentifiedPlantsProps = {
-    plantScientificNames: string[]
+    plants: Plant[]
 }
-export async function IdentifiedPlants(props: IdentifiedPlantsProps) {
-    const {plantScientificNames} = props
-
+export function IdentifiedPlants(props: IdentifiedPlantsProps) {
+    const {plants} = props
+    console.log(plants)
     return (
         <div>
-            {/*{plantScientificNames.map((plantScientificName, index) => <IdentifiedPlantCard key={index} plantScientificName={plantScientificName} />)}*/}
+            {plants.map((plant, index) => <IdentifiedPlantCard key={index} plant={plant} />)}
 
         </div>
     )

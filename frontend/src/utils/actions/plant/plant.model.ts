@@ -52,5 +52,6 @@ export async function fetchPlantByScientificName(plantScientificName: string) : 
             return response.json()
         }
     })
-    return PlantSchema.parse(data)
+    console.log(data)
+    return PlantSchema.array().max(1).parse(data)[0]
 }
