@@ -26,7 +26,7 @@ export default function SearchPlants() {
     const handleSubmit = async (values: SearchTerm, actions: FormikHelpers<SearchTerm> ) => {
         console.log('handleSubmit')
         const {setStatus} = actions
-        fetch(`/apis/plant/plantCommonNames/${values.searchTerm}`, {
+        fetch(`/apis/plant/plantCommonName/${values.searchTerm}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

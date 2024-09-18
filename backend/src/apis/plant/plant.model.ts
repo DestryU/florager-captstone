@@ -55,7 +55,6 @@ export async function selectPlantByPlantCommonName (plantCommonName: string) : P
     const rowList = await sql`SELECT plant_id, plant_scientific_name, plant_common_names, plant_image_url, plant_reference_url FROM plant WHERE plant_common_names like ${formattedPlantCommonName}`
     const result = PlantSchema.array().max(1).parse(rowList)
     return result
-
 }
 
 export async function selectPlantByPlantScientificName (plantScientificName: string) : Promise<Plant[]> {
