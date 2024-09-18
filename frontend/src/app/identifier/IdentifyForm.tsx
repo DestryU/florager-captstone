@@ -82,11 +82,7 @@ export function IdentifyForm(props: Props) {
                         })
                 }
 
-
-
-
                 })
-
 
     }
 
