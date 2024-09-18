@@ -3,9 +3,7 @@
 import {Marker, Popup} from "react-map-gl";
 import {Find} from "@/utils/actions/find/find.validator";
 import {useState} from "react";
-
-
-
+import Link from "next/link";
 
 
 type Props = {
@@ -33,8 +31,14 @@ export function Pin(props: Props) {
                 onClose={() => setShowPopup(false)}
             >
                 <div className={"flex justify-center items-center h-[30px] w-[125px] bg-green-200 rounded-xl"}>
-                    <a href="../../comments">Show me this plant!</a>
+
                     {/*{find.findId}*/}
+                    <Link
+                        href={`/comments/${find.findId}`}
+                    >
+                        Show me this plant
+                    </Link>
+
                 </div>
 
             </Popup>: <></>}
