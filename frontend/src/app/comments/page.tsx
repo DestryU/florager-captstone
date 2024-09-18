@@ -26,7 +26,7 @@ export default async function CommentsPage() {
 
                 <div className={"bg-red rounded-lg items-center h-auto w-[500px] m-12"}>
                     <h1 className={"text-xl text-green-700 font-bold"}>Leave a comment about this Foliage Find!</h1>
-                    {/*<CommentForm session={loggedInUser} profile={profile}/>*/}
+                    <CommentForm session={loggedInUser} profile={profile}/>
                 </div>
             </section>
 
