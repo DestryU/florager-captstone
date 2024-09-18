@@ -56,9 +56,9 @@ function PlantCard({ plant }: PlantCardProps) {
                             {commonName}
                         </p>
                     ))}</h4>
-                        <p className="text-lg text-gray-900 dark:text-gray-400">
+                        <h4 className="text-lg text-gray-900 dark:text-gray-400">
                     <p><strong>Reference URL: </strong> <Link target="_blank" href={plant.plantReferenceUrl}> {plant.plantReferenceUrl}</Link></p>
-                </p>
+                </h4>
                 </div>
             </div>
         </Card>
