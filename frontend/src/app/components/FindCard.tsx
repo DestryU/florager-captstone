@@ -32,7 +32,7 @@ export default async function DistinctFindCard(findId: Props) {
 
 
     return (
-        <Card className="max-w-md bg-green-100" imgSrc={distinctPlant.plantImageUrl?.toString()} horizontal>
+        <Card className="max-w-md bg-green-100" imgSrc={distinctFind.findImageUrl.toString()} horizontal>
             <div className={"flex-col pb-[.5rem]"}>
                 <h4 className={"text-[2.5rem] font-[700] text-green-700"}>
                     {distinctPlant.plantCommonNames[0]}

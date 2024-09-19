@@ -7,7 +7,7 @@ import {fetchAllComments, fetchCommentsByProfileId} from "@/utils/actions/commen
 import {Comment} from "@/utils/actions/comments/comment.action";
 import React from "react";
 import {PageProps} from "@/utils/interfaces/NextComponents";
-import DistinctFindCard from "@/app/components/findCard";
+import DistinctFindCard from "@/app/components/FindCard";
 type Params = {
     findId: string
 }
