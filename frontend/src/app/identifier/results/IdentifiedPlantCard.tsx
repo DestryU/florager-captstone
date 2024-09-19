@@ -63,19 +63,16 @@ useEffect(()=> {
 
     return (
         <>
-        <div className={"grid sm:grid-cols-1 md:grid-cols-1 px-20 gap-5 content-center mb-20"}>
-            <h1 className={"p-5 mx-auto font-bold text-green-700 mt-10 text-xl border-4 border-green-700 bg-white rounded-lg"}>Here Are Your Identified Plants!</h1>
-            <img src={plant.plantImageUrl} alt="identified plant" className={"mx-auto max-w-md"} />
-            <div className={"p-5 mx-auto font-bold text-green-700"}>
+        <div className={"flex flex-col mx-auto; items-center pt-10 pb-[5rem]"}>
+            <h1 className={"p-5 mx-auto font-bold text-green-700 text-xl border-4 border-green-700 bg-white rounded-lg"}>Here Are Your Identified Plants!</h1>
+            <img src={plant.plantImageUrl} alt="identified plant" className={"mx-auto max-w-md pt-10"} />
+            <div className={"pt-10 mx-auto text-2xl font-bold text-green-700"}>
                 {plant.plantScientificName}
             </div>
-            {/*<div className={"p-5 mx-auto font-bold text-green-700"}>*/}
-            {/*    {plant.plantImageUrl}*/}
-            {/*</div>*/}
-            <div className={"mx-auto font-bold text-green-700"}>
+            <div className={"pt-10 mb-10 mx-auto font-bold text-green-700"}>
             {location.lat} {location.lng}
             </div>
-            <Button onClick={handlePlantFound} type={"button"} className={"p-5 mx-80 bg-green-700 font-bold items-center hover:bg-green-200"} >ADD THIS PLANT TO MY FINDS!</Button>
+            <Button onClick={handlePlantFound} type={"button"} className={"p-2 mx-auto bg-green-700 font-bold items-center hover:bg-green-200 mb-10 "} >ADD THIS PLANT TO THE MAP!</Button>
         </div>
         </>
     )
