@@ -1,0 +1,39 @@
+services:
+  frontend:
+    extends:
+      file: docker-compose.yml
+      service: frontend
+  backend:
+    extends:
+      file: docker-compose.yml
+      service: backend
+  sql:
+    extends:
+      file: docker-compose.yml
+      service: sql
+  redis:
+    extends:
+      file: docker-compose.yml
+      service: redis
+  reverse-proxy:
+    logging:
+      driver: journald
+    build: reverse-proxy
+    ports:
+      - '80:80'
+      - '443:443'
+    env_file:
+      - project.env
+    volumes:
+      - reverse-proxy:/etc/letsencrypt
+    restart: unless-stopped
+    depends_on:
+      - backend
+      - frontend
+volumes:
+  sql:
+    driver: local
+  redis:
+    driver: local
+  reverse-proxy:
+    driver: local
