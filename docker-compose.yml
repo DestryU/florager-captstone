@@ -1,28 +1,39 @@
 services:
+  frontend:
+    logging:
+      driver: journald
+    build: frontend
+    user: 'node'
+    env_file:
+      - ./project.env
+    depends_on:
+      - backend
   redis:
+    logging:
+      driver: journald
     image: 'redis:alpine'
     volumes:
       - 'redis:/data'
     env_file:
       - ./project.env
     healthcheck:
-      test: [ "CMD", "redis-cli", "ping"]
+      test: [ 'CMD', 'redis-cli', 'ping']
   sql:
+    logging:
+      driver: journald
     build: ./sql
-    ports:
-      - '54321:5432'
     platform: linux/x86_64
     volumes:
       - sql:/var/lib/postgresql/data/
     env_file:
       - ./project.env
-  node:
+  backend:
+    logging:
+      driver: journald
     build: backend
     env_file:
       - project.env
-    ports:
-      - '8080:4200'
-    user: "node"
+    user: 'node'
     volumes:
       - ./backend/src:/home/node/app/src
       - ./backend/tsconfig.json:/home/node/app/tsconfig.json
