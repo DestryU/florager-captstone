@@ -72,7 +72,7 @@ useEffect(()=> {
             <div className={"pt-10 mb-10 mx-auto font-bold text-green-700"}>
             {location.lat} {location.lng}
             </div>
-            <Button onClick={handlePlantFound} type={"button"} className={"p-2 mx-auto bg-green-700 font-bold items-center hover:bg-green-200 mb-10 "} >ADD THIS PLANT TO MY FINDS!</Button>
+            <Button onClick={handlePlantFound} type={"button"} className={"p-2 mx-auto bg-green-700 font-bold items-center hover:bg-green-200 mb-10 "} >ADD THIS PLANT TO THE MAP!</Button>
         </div>
         </>
     )
