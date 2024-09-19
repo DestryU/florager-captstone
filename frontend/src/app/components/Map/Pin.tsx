@@ -31,21 +31,16 @@ export function Pin(props: Props) {
                 onClose={() => setShowPopup(false)}
             >
                 <div className={"flex justify-center items-center h-[30px] w-[125px] bg-green-200 rounded-xl"}>
-
                     {/*{find.findId}*/}
                     <Link
                         href={`/comments/${find.findId}`}
                     >
                         Show me this plant
                     </Link>
-
                 </div>
-
             </Popup>: <></>}
 
             <Marker onClick={(e) => {
-
-
                 e.originalEvent.stopPropagation()
                 setShowPopup(true)
             }} key={`marker-${findId}`} longitude={findLng} latitude={findLat}>
